@@ -1,0 +1,12 @@
+{
+  "test":{
+    "PORT":3000,
+    "MONGODB_URI":"mongodb://localhost:27017/LoginSignupApiTest",
+    "JWT_SECRET":"ghjdfsafjtyretw233254#243Sfg"
+  },
+  "development":{
+    "PORT":3000,
+    "MONGODB_URI":"mongodb://localhost:27017/LoginSignupApi",
+    "JWT_SECRET":"JHKJDFS4#45637vg97v&(45CBV)"
+  }
+}
