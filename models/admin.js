@@ -43,7 +43,7 @@ var adminSchema = new mongoose.Schema({
 adminSchema.methods.generateAuthToken = function(){
   var admin = this;
   var access = 'admin';
-  var token = jwt.sign({_id:user._id.toHexString(),access},'abc123').toString();
+  var token = jwt.sign({_id:admin._id.toHexString(),access},'abc123').toString();
 
   admin.tokens.push({access,token});
   return admin.save().then(()=>{
@@ -67,6 +67,34 @@ adminSchema.statics.findByToken = function(token){
     'tokens.access':'admin'
   });
 };
+
+adminSchema.statics.findByCredentials = function(email,password){
+  var Admin = this;
+
+  return Admin.findOne({email}).then((admin)=>{
+
+    if(!email || !password)
+      return Promise.reject({"error":"Please enter Email Address & Password to continue."});
+
+    if(!validator.isEmail(email))
+      return Promise.reject({"error":"Invalid Email address passed."});
+
+    if(!admin)
+      return Promise.reject({"error":"Authentication failed! Please check your credentials & try again."});
+
+    return new Promise((resolve,reject)=>{
+      bcrypt.compare(password, admin.password).then(function(res) {
+        if(res)
+          return resolve(admin);
+        else {
+          return reject({"error":"Authentication failed! Please check your credentials & try again."});
+        }
+      });
+    });
+  });
+};
+
+
 
 adminSchema.pre('save',function(next){
   var admin = this;

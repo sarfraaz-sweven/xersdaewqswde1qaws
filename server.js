@@ -24,7 +24,7 @@ app.post('/signin',(req,res)=>{
     return user.generateAuthToken();
   })
   .then((token)=>{
-    res.header('x-auth',token).send(user);
+    res.header('x-auth',token).send();
   })
   .catch((err)=>{
     res.status(400).send(err);
@@ -39,7 +39,7 @@ app.post('/admin/signin',(req,res)=>{
     return admin.generateAuthToken();
   })
   .then((token)=>{
-    res.header('x-auth',token).send(user);
+    res.header('x-auth',token).send(admin);
   })
   .catch((err)=>{
     res.status(400).send(err);
@@ -61,7 +61,7 @@ app.post('/admin/login',(req,res)=>{
 });
 
 app.delete('/admin/logout',authenticateAdmin,(req,res)=>{
-  req.user.removeToken(req.token).then(()=>{
+  req.admin.removeToken(req.token).then(()=>{
     res.status(200).send();
   },()=>{
     res.status(400).send();
