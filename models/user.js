@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 const validator = require('validator');
 const jwt = require('jsonwebtoken');
 const _ = require('lodash');
-const sha1 = require('sha1');
 var bcrypt = require('bcrypt');
 
 var userSchema = new mongoose.Schema({
@@ -20,7 +19,7 @@ var userSchema = new mongoose.Schema({
     unique:true,
     validate: {
         validator: validator.isEmail,
-        message:'%{value} is not a valid email'
+        message:'{value} is not a valid email'
     }
   },
   password:{
@@ -84,14 +83,18 @@ userSchema.methods.generateAuthToken = function(){
 userSchema.methods.generateResetToken = function(){
   var user = this;
   var access = 'auth';
-  var token = jwt.sign({_id:user._id.toHexString()},'abc123').toString();
+  var token;
 
-  user.reset_token.value = token;
-  user.reset_token.expired_at = Date.now() + 1800000;
-  console.log(user);
-  return user.save().then(()=>{
-    return token;
+  return bcrypt.hash(user._id.toHexString(), 10).then(function(hash) {
+    user.reset_token.value = hash;
+    token = hash;
+    user.reset_token.expired_at = Date.now() + 1800000;
+    return user.save().then(()=>{
+      console.log('Passed : '+token)
+      return token;
+    });
   });
+
 };
 
 userSchema.methods.removeToken = function(token){
@@ -121,32 +124,19 @@ userSchema.statics.findByToken = function(token){
   });
 };
 
-userSchema.statics.resetByToken = function(token,password){
+userSchema.statics.validateResetToken = function(token){
   var User = this;
   var decoded;
 
-  try{
-    decoded = jwt.verify(token,'abc123');
-  } catch(e){
-    return Promise.reject(e);
-  }
+  return User.findOne({'reset_token.value':token,'reset_token.expired_at': { $gt : Date.now() } });
+};
 
-  var cur_date = Date.now();
-
-  return User.findOneById(decoded._id).then((doc)=>{
-    if(doc.reset_token.value !== token || doc.reset_token.expired_at > cur_date)
-      return new Promise.reject("1");
-
-      User.findByIdAndUpdate(doc._id,{$set:{'password':password}},{new:true}).then((user)=>{
-        if(!todo)
-          return new Promise.reject("2");
-
-          new Promise.resolve();
-      });
-  })
-  .catch((err)=>{
-    return new Promise.reject("3");
-  })
+userSchema.statics.resetByToken = function(password,token){
+  var User = this;
+  var decoded;
+  return bcrypt.hash(password, 10).then(function(hash) {
+    return User.findOneAndUpdate({'reset_token.value':token,'reset_token.expired_at': { $gt : Date.now() } },{$set:{'password':hash}},{new:true});
+  });
 };
 
 userSchema.statics.findByCredentials = function(email,password){
@@ -164,10 +154,13 @@ userSchema.statics.findByCredentials = function(email,password){
       return Promise.reject({"error":"Authentication failed! Please check your credentials & try again."});
 
     return new Promise((resolve,reject)=>{
-      if(sha1(password) == user.password)
-        return resolve(user);
-      else
-        return reject({"error":"Authentication failed! Please check your credentials & try again."});
+      bcrypt.compare(password, user.password).then(function(res) {
+        if(res)
+          return resolve(user);
+        else {
+          return reject({"error":"Authentication failed! Please check your credentials & try again."});
+        }
+      });
     });
   });
 };
@@ -175,12 +168,15 @@ userSchema.statics.findByCredentials = function(email,password){
 userSchema.pre('save',function(next){
   var user = this;
   if(user.isModified('password')){
-    user.password = sha1(user.password);
-    next();
+    bcrypt.hash(user.password, 10).then(function(hash) {
+      user.password = hash;
+      next();
+    });
   } else {
     next();
   }
 });
+
 
 var User = mongoose.model('User',userSchema);
 
