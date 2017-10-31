@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const _ = require('lodash');
-const sha1 = require('sha1');
+const hbs = require('hbs');
 
 var {mongoose} = require('./db/mongoose');
 var {User} = require('./models/user');
@@ -11,9 +11,11 @@ var {authenticate,authenticateAdmin} = require('./middleware/authenticate');
 var app = express();
 
 app.use(bodyParser.json());
+app.set('view engine', 'html');
+app.engine('html', require('hbs').__express);
 
 app.get('/',(req,res)=>{
-  res.send("Hola");
+  res.render("Hola");
 });
 
 app.post('/signin',(req,res)=>{
@@ -60,11 +62,47 @@ app.post('/admin/login',(req,res)=>{
   });
 });
 
+app.get('/admin/users',authenticateAdmin,(req,res)=>{
+  Admin.getUsers(User).then((users)=>{
+    if(!users)
+      res.send("No Users Found");
+    res.send(users);
+  })
+  .catch((err)=>{
+    res.status(404).send(err);
+  });
+});
+
+app.patch('/admin/users/changeState',authenticateAdmin,(req,res)=>{
+
+  User.findById(req.body.id).then((user)=>{
+    var state;
+    if(req.body.active)
+      state="Activate";
+    else {
+      state="Deactivate";
+    }
+
+    if(!user)
+      return new Promise.reject("The user with the id you provided, doesn't exist");
+
+      Admin.stateChange(user,req.body.active).then(()=>{
+        res.send({'message':'User '+state+'d Successfully'});
+      })
+      .catch((err)=>{
+        new Promise.reject(err);
+      });
+  })
+  .catch((err)=>{
+    res.status(400).send({'error':err});
+  });
+});
+
 app.delete('/admin/logout',authenticateAdmin,(req,res)=>{
   req.admin.removeToken(req.token).then(()=>{
-    res.status(200).send();
+    res.status(200).send({'message':'Admin Logged out Successfully'});
   },()=>{
-    res.status(400).send();
+    res.status(400).send({'message':'Admin Logged out Successfully'});
   });
 });
 

@@ -15,7 +15,7 @@ var authenticate = (req,res,next) => {
     next();
   })
   .catch((err)=>{
-+    res.status(401).send();
++    res.status(401).send(err);
   });
 };
 
@@ -27,13 +27,13 @@ var authenticateAdmin = (req,res,next) => {
     {
       return Promise.reject();
     }
-
+    console.log(admin);
     req.admin = admin;
     req.token = token;
     next();
   })
   .catch((err)=>{
-    res.status(401).send();
+    res.status(401).send("errrr");
   });
 };
 

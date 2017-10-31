@@ -94,7 +94,23 @@ adminSchema.statics.findByCredentials = function(email,password){
   });
 };
 
+adminSchema.statics.getUsers = function(User){
+  return User.find({},'_id name email');
+}
 
+adminSchema.statics.stateChange = function(user, active){
+  return user.update({'is_active':active});
+}
+
+adminSchema.methods.removeToken = function(token){
+  var admin = this;
+
+  return admin.update ({
+    $pull:{
+      tokens:{token}
+    }
+  });
+}
 
 adminSchema.pre('save',function(next){
   var admin = this;

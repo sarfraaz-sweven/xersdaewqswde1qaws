@@ -153,6 +153,12 @@ userSchema.statics.findByCredentials = function(email,password){
     if(!user)
       return Promise.reject({"error":"Authentication failed! Please check your credentials & try again."});
 
+    if(user.is_verified === false)
+      return Promise.reject({"error":"This account is not verified, complete the verification & try again"});
+
+    if(user.is_active === false)
+      return Promise.reject({"error":"Sorry, you cannot login as your account is suspended."});
+
     return new Promise((resolve,reject)=>{
       bcrypt.compare(password, user.password).then(function(res) {
         if(res)
