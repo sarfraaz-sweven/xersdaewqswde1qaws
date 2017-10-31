@@ -80,6 +80,19 @@ userSchema.methods.generateAuthToken = function(){
   });
 };
 
+userSchema.methods.generateOTP = function(){
+  var user = this;
+  var access = 'auth';
+  var token = jwt.sign({_id:user._id.toHexString()},'abc').toString();
+
+  user.otp.value = '123456'
+  user.otp.expired_at = Date.now() + 1800000;
+
+  return user.save().then(()=>{
+    return token;
+  });
+};
+
 userSchema.methods.generateResetToken = function(){
   var user = this;
   var access = 'auth';
@@ -121,6 +134,21 @@ userSchema.statics.findByToken = function(token){
     '_id':decoded._id,
     'tokens.token':token,
     'tokens.access':'auth'
+  });
+};
+
+userSchema.statics.verifyOtp = function(token){
+  var User = this;
+  var decoded;
+
+  try{
+    decoded = jwt.verify(token,'abc');
+  } catch(e){
+    return Promise.reject();
+  }
+
+  return User.findOne({
+    '_id':decoded._id
   });
 };
 

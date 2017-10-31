@@ -1,0 +1,55 @@
+{{> header_before}}
+  <!-- Full Width Column -->
+  <div class="content-wrapper">
+    <div class="container">
+      <!-- Main content -->
+      <div class="login-box">
+        <div class="login-logo">
+          <a href="../../index2.html"><b>Admin</b>LTE</a>
+        </div>
+        <!-- /.login-logo -->
+        <div class="login-box-body">
+          <p class="login-box-msg">Login to start your session</p>
+          <div class="alert alert-danger alert-dismissible" style="display:none" id="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <p></p>
+          </div>
+          <form action="/login" method="post" id="login_form">
+            <div class="form-group has-feedback">
+              <input type="text" class="form-control" placeholder="Email" name="email">
+              <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+            </div>
+            <div class="form-group has-feedback">
+              <input type="password" class="form-control" placeholder="Password" name="password">
+              <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+            </div>
+            <div class="row">
+              <div class="col-xs-7 col-xs-offset-1">
+                <div class="checkbox icheck">
+                  <label>
+                    <input type="checkbox" /> Remember Me
+                  </label>
+                </div>
+              </div>
+              <!-- /.col -->
+              <div class="col-xs-4">
+                <button type="submit" class="btn btn-primary btn-block btn-flat">Login</button>
+              </div>
+              <!-- /.col -->
+            </div>
+          </form>
+
+          <!-- /.social-auth-links -->
+
+          <a class="pull-right" href="/forgot_password">I forgot my password</a><br>
+        </div>
+        <!-- /.login-box-body -->
+      </div>
+      <!-- /.login-box -->
+
+      <!-- /.content -->
+    </div>
+    <!-- /.container -->
+  </div>
+  <!-- /.content-wrapper -->
+{{> footer_before}}

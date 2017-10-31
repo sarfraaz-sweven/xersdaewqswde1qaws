@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const _ = require('lodash');
 const hbs = require('hbs');
+const session = require('express-session');
 
 var {mongoose} = require('./db/mongoose');
 var {User} = require('./models/user');
@@ -10,28 +11,73 @@ var {authenticate,authenticateAdmin} = require('./middleware/authenticate');
 
 var app = express();
 
+hbs.registerPartials(__dirname+'/views');
+
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(session({
+  secret: 'top Secret',
+  resave:false,
+  saveUninitialized:true
+}));
+
 app.set('view engine', 'html');
 app.engine('html', require('hbs').__express);
 
+app.use(express.static(__dirname + '/public'));
+
 app.get('/',(req,res)=>{
-  res.render("Hola");
+  res.render("home.html",{
+    'pageTitle':'Welcome to Home'
+  });
+});
+
+app.get('/signin',(req,res)=>{
+  res.render("signin.html",{
+    'pageTitle':'Welcome to Home'
+  });
+});
+
+app.get('/login',(req,res)=>{
+  res.render("login.html",{
+    'pageTitle':'Welcome to Home'
+  });
 });
 
 app.post('/signin',(req,res)=>{
-  var body = _.pick(req.body,['name','email','password']);
+  var body = _.pick(req.body,['name','email','password','confirm_password']);
   var user = new User(body);
 
   user.save().then(()=>{
-    return user.generateAuthToken();
+    return user.generateOTP();
   })
   .then((token)=>{
-    res.header('x-auth',token).send();
+    res.send(token);
   })
   .catch((err)=>{
+    if(err.errors)
+    {
+      if(err.errors.name)
+        return res.status(400).send({"error":"Please enter the name"});
+      if(err.errors.email)
+        return res.status(400).send({"error":"Please enter a valid email address"});
+      if(err.errors.password)
+        return res.status(400).send({"error":"Password must be at least 6 characters long"});
+    }
+    if(err.code)
+    {
+      return res.status(400).send({"error":"Sorry, email you entered is already in use. Please try with another email."});
+    }
+    console.log(err);
     res.status(400).send(err);
   });
 });
+
+app.post('/verify_otp',(req,res)=>{
+  var body = _.pick(req.body,['otp','token']);
+
+  User.
+})
 
 app.post('/admin/signin',(req,res)=>{
   var body = _.pick(req.body,['name','email','password']);
@@ -41,6 +87,7 @@ app.post('/admin/signin',(req,res)=>{
     return admin.generateAuthToken();
   })
   .then((token)=>{
+    req.session.auth = token;
     res.header('x-auth',token).send(admin);
   })
   .catch((err)=>{
@@ -55,6 +102,7 @@ app.post('/admin/login',(req,res)=>{
     return admin.generateAuthToken();
   })
   .then((token)=>{
+    req.session.auth = token;
     res.header('x-auth',token).status(200).send();
   })
   .catch((err)=>{
@@ -113,7 +161,10 @@ app.post('/login',(req,res)=>{
     return user.generateAuthToken();
   })
   .then((token)=>{
-    res.header('x-auth',token).status(200).send();
+    req.session.auth = token;
+    req.session.auth.maxAge = 36000000;
+    console.log('token saved : '+token);
+    res.header('x-auth',token).status(200).send(token);
   })
   .catch((err)=>{
     res.status(400).send(err);
@@ -122,6 +173,7 @@ app.post('/login',(req,res)=>{
 
 app.delete('/logout',authenticate,(req,res)=>{
   req.user.removeToken(req.token).then(()=>{
+    req.session.destroy();
     res.status(200).send();
   },()=>{
     res.status(400).send();
@@ -129,7 +181,11 @@ app.delete('/logout',authenticate,(req,res)=>{
 });
 
 app.get('/users/me',authenticate,(req,res)=>{
-  res.send(req.user);
+  res.render('dashboard.html',{
+      'name':req.user.name,
+      'email':req.user.email,
+      'pageTitle':'Dashboard'
+  });
 });
 
 app.post('/generate_reset_password',(req,res)=>{

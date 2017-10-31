@@ -2,7 +2,7 @@ var {User} = require('./../models/user');
 var {Admin} = require('./../models/admin');
 
 var authenticate = (req,res,next) => {
-  var token = req.header('x-auth');
+  var token = req.session.auth;
 
   User.findByToken(token).then((user)=>{
     if(!user)
@@ -15,12 +15,12 @@ var authenticate = (req,res,next) => {
     next();
   })
   .catch((err)=>{
-+    res.status(401).send(err);
+    res.status(401).send(req.session.token);
   });
 };
 
 var authenticateAdmin = (req,res,next) => {
-  var token = req.header('x-auth');
+  var token = req.session.auth;
 
   Admin.findByToken(token).then((admin)=>{
     if(!admin)
