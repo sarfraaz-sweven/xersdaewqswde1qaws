@@ -12,7 +12,15 @@ var {authenticate,authenticateAdmin} = require('./middleware/authenticate');
 var app = express();
 
 hbs.registerPartials(__dirname+'/views');
-
+hbs.registerHelper( "verify", function (v){
+  return v ? "Verified" : "Not Verified";
+});
+hbs.registerHelper( "status", function (s){
+  return s ? "Active" : "Not Active";
+});
+hbs.registerHelper( "action_button", function (s){
+  return s ? new hbs.SafeString("<button data-id='"+this._id+"'  type='button' class='btn btn-block btn-primary deactivate'>Deactivate</button>") :  new hbs.SafeString("<button data-id='"+this._id+"'  type='button' class='btn btn-block btn-primary activate'>Activate</button>");
+});
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(session({
@@ -45,9 +53,10 @@ app.get('/login',(req,res)=>{
 });
 
 app.post('/signin',(req,res)=>{
-  var body = _.pick(req.body,['name','email','password','confirm_password']);
+  var body = _.pick(req.body,['name','email','password']);
   var user = new User(body);
 
+  console.log('hi ',body);
   user.save().then(()=>{
     return user.generateOTP();
   })
@@ -76,8 +85,27 @@ app.post('/signin',(req,res)=>{
 app.post('/verify_otp',(req,res)=>{
   var body = _.pick(req.body,['otp','token']);
 
-  User.
-})
+  User.verifyOtp(body.otp,body.token).then((user)=>{
+    console.log("Pass 1");
+    return user.generateAuthToken();
+  })
+  .then((token)=>{
+    console.log("Pass 2");
+    req.session.auth = token;
+    req.session.auth.maxAge = 36000000;
+    res.status(200).send();
+  })
+  .catch((err)=>{
+    console.log(err);
+    res.status(400).send({'error':err});
+  });
+});
+
+app.get('/admin/signin',(req,res)=>{
+  res.render('admin/signin.html',{
+    'pageTitle':'Admin Signin'
+  });
+});
 
 app.post('/admin/signin',(req,res)=>{
   var body = _.pick(req.body,['name','email','password']);
@@ -88,10 +116,17 @@ app.post('/admin/signin',(req,res)=>{
   })
   .then((token)=>{
     req.session.auth = token;
-    res.header('x-auth',token).send(admin);
+    req.session.auth.maxAge = 36000000;
+    res.header('x-auth',token).send(token);
   })
   .catch((err)=>{
     res.status(400).send(err);
+  });
+});
+
+app.get('/admin/login',(req,res)=>{
+  res.render('admin/login.html',{
+    'pageTitle':'Admin Login'
   });
 });
 
@@ -103,6 +138,7 @@ app.post('/admin/login',(req,res)=>{
   })
   .then((token)=>{
     req.session.auth = token;
+    req.session.auth.maxAge = 36000000;
     res.header('x-auth',token).status(200).send();
   })
   .catch((err)=>{
@@ -110,14 +146,27 @@ app.post('/admin/login',(req,res)=>{
   });
 });
 
+app.get('/admin',authenticateAdmin,(req,res)=>{
+  res.render('admin/dashboard.html',{
+    'pageTitle':'Admin Dashboard',
+    'name':req.admin.name
+  });
+});
+
 app.get('/admin/users',authenticateAdmin,(req,res)=>{
+  console.log("Pass");
   Admin.getUsers(User).then((users)=>{
-    if(!users)
-      res.send("No Users Found");
-    res.send(users);
+    var u;
+    if(users)
+      u = users;
+    console.log(users);
+    res.render('admin/users.html',{
+      'users':u,
+      'pageTitle':'Users'
+    });
   })
   .catch((err)=>{
-    res.status(404).send(err);
+    res.status(401).send(err);
   });
 });
 
@@ -188,6 +237,12 @@ app.get('/users/me',authenticate,(req,res)=>{
   });
 });
 
+app.get('/forgot_password',(req,res)=>{
+  res.render('forgot_password.html',{
+    'pageTitle':'Forgot Password?'
+  });
+});
+
 app.post('/generate_reset_password',(req,res)=>{
   var body = _.pick(req.body,['email']);
 
@@ -198,7 +253,7 @@ app.post('/generate_reset_password',(req,res)=>{
   })
   .then((token)=>{
       console.log('Received : '+token)
-      res.send({'token':token});
+      res.send('reset_password/'+token);
   })
   .catch((err)=>{
     res.status(400).send(err);
@@ -207,7 +262,10 @@ app.post('/generate_reset_password',(req,res)=>{
 
 app.get('/reset_password/:token',(req,res)=>{
   User.validateResetToken(req.params.token).then((user)=>{
-    res.status(200).send({'name':user.name,'token':req.params.token});
+//    res.status(200).send({'name':user.name,'token':req.params.token});
+      res.render('reset_password.html',{
+        'token':req.params.token
+      });
   })
   .catch((err)=>{
     res.status(400).send({'error':"Bad request, Either the link has been altered or expired!"});

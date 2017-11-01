@@ -21,19 +21,18 @@ var authenticate = (req,res,next) => {
 
 var authenticateAdmin = (req,res,next) => {
   var token = req.session.auth;
-
+  console.log("Here",token);
   Admin.findByToken(token).then((admin)=>{
     if(!admin)
     {
-      return Promise.reject();
+      res.status(401).send("Unauthoroised Access Denied");
     }
-    console.log(admin);
     req.admin = admin;
     req.token = token;
     next();
   })
   .catch((err)=>{
-    res.status(401).send("errrr");
+    res.status(401).send(err);
   });
 };
 

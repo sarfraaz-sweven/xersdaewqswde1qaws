@@ -1,4 +1,4 @@
-{{> header_before}}
+{{> header_before_admin}}
   <div class="content-wrapper">
     <div class="container">
       <!-- Main content -->
@@ -13,7 +13,7 @@
           <p></p>
         </div>
 
-        <form action="" method="post" id="signup_form">
+        <form action="" method="post" id="signup_form_admin">
           <div class="form-group has-feedback">
             <input type="text" class="form-control" placeholder="Full name" name="name">
             <span class="glyphicon glyphicon-user form-control-feedback"></span>
@@ -41,21 +41,6 @@
             <!-- /.col -->
             <div class="col-xs-4">
               <button type="submit" class="btn btn-primary btn-block btn-flat">Sign up</button>
-            </div>
-            <!-- /.col -->
-          </div>
-        </form>
-
-        <form action="" method="post" id="otp_form" style="display:none;">
-          <div class="form-group has-feedback">
-            <input type="text" class="form-control" placeholder="Enter OTP here" name="otp">
-            <input type="hidden" name="token" value="" id="token">
-            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-          </div>
-          <div class="row">
-            <!-- /.col -->
-            <div class="col-xs-4 col-xs-offset-4">
-              <button type="submit" class="btn btn-primary btn-block btn-flat">Verify OTP</button>
             </div>
             <!-- /.col -->
           </div>

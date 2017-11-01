@@ -77,6 +77,9 @@ userSchema.methods.generateAuthToken = function(){
   user.tokens.push({access,token});
   return user.save().then(()=>{
     return token;
+  })
+  .catch((err)=>{
+    return err;
   });
 };
 
@@ -85,7 +88,7 @@ userSchema.methods.generateOTP = function(){
   var access = 'auth';
   var token = jwt.sign({_id:user._id.toHexString()},'abc').toString();
 
-  user.otp.value = '123456'
+  user.otp.value = '123456';
   user.otp.expired_at = Date.now() + 1800000;
 
   return user.save().then(()=>{
@@ -137,18 +140,36 @@ userSchema.statics.findByToken = function(token){
   });
 };
 
-userSchema.statics.verifyOtp = function(token){
+userSchema.statics.verifyOtp = function(otp,token){
   var User = this;
   var decoded;
 
   try{
     decoded = jwt.verify(token,'abc');
   } catch(e){
-    return Promise.reject();
+    return Promise.reject("Token Authentication failed!");
   }
 
-  return User.findOne({
-    '_id':decoded._id
+  return User.findById(decoded._id).then((user)=>{
+
+    return new Promise((resolve,reject)=>{
+      console.log('Found user : ',user);
+      if(!user)
+        return reject("Invalid OTP provided / OTP has been expired!");
+      if(user.otp.value !== otp)
+        return reject("Invalid OTP provided.");
+      if(user.otp.expired_at < Date.now())
+        return reject("OTP has been expired, Please generate new OTP & try again!");
+
+      console.log('Survived Authentication:');
+      return user.update({'is_verified':true,'otp.value':'','otp.expired_at':''}).then((updated)=>{
+        console.log('Updated user : ',updated);
+        if(!updated)
+          return reject("Error verifying OTP, Try again!");
+
+          resolve(user);
+        });
+    });
   });
 };
 
@@ -163,7 +184,19 @@ userSchema.statics.resetByToken = function(password,token){
   var User = this;
   var decoded;
   return bcrypt.hash(password, 10).then(function(hash) {
-    return User.findOneAndUpdate({'reset_token.value':token,'reset_token.expired_at': { $gt : Date.now() } },{$set:{'password':hash}},{new:true});
+    return User
+          .findOneAndUpdate({
+              'reset_token.value':token,
+              'reset_token.expired_at': { $gt : Date.now() }
+              },
+              {$set:
+                {'password':hash,
+                  'reset_token.value':'',
+                  'reset_token.expired_at':''
+                }
+              },
+              {new:true}
+          );
   });
 };
 

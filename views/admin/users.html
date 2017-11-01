@@ -1,0 +1,49 @@
+{{> header_after_admin}}
+<section class="content">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="box">
+        <div class="box-header">
+          <h3 class="box-title">Users</h3>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+          <table id="example2" class="table table-bordered table-hover">
+            <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Verified</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+              {{#each users}}
+            <tr>
+              <td>{{name}}</td>
+              <td>{{email}}</td>
+              <td>{{verify is_verified}}</td>
+              <td>{{status is_active}}</td>
+              <td>{{action_button is_active}}</td>
+            </tr>
+              {{/each}}
+            </tbody>
+            <tfoot>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Verified</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+            </tfoot>
+          </table>
+        </div>
+        <!-- /.box-body -->
+      </div>
+      <!-- /.box -->
+    </div>
+  </div>
+</section>
+{{> footer}}

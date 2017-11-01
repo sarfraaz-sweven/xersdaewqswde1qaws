@@ -95,7 +95,7 @@ adminSchema.statics.findByCredentials = function(email,password){
 };
 
 adminSchema.statics.getUsers = function(User){
-  return User.find({},'_id name email');
+  return User.find({},'_id name email is_verified is_active');
 }
 
 adminSchema.statics.stateChange = function(user, active){
