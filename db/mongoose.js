@@ -1,4 +1,4 @@
 const mongoose = require('mongoose');
 
-mongoose.connect("mongodb://sarfraaz:sarfraaz@ds235065.mlab.com:35065/nodetest",{useMongoClient:true});
+mongoose.connect("mongodb://admin:admin@ds249605.mlab.com:49605/realfaces",{useMongoClient:true});
 mongoose.Promise = global.Promise;

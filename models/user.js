@@ -3,44 +3,81 @@ const validator = require('validator');
 const jwt = require('jsonwebtoken');
 const _ = require('lodash');
 var bcrypt = require('bcrypt');
+var Cryptr = require('cryptr');
+cryptr = new Cryptr('PerfectSecretKey');
 
 var userSchema = new mongoose.Schema({
   name:{
     type:String,
     required:true,
     trim:true,
-    minLength:1
+    minlength:1
   },
   email:{
     type:String,
     required:true,
     trim:true,
-    minLength: 1,
+    minlength: 1,
     unique:true,
     validate: {
         validator: validator.isEmail,
         message:'{value} is not a valid email'
     }
   },
-  password:{
+  mobile_no:{
+    type:String,
+    minlength:10,
+    maxlength:10,
+    required:true
+  },
+  created_at:{
     type:String,
     required:true
   },
-  is_verified:{
+  password:{
+    type:String,
+    minlength:6,
+    required:true
+  },
+  is_deleted:{
     type:Boolean,
     default:false
   },
   is_active:{
     type:Boolean,
-    default:false
+    default:true
   },
-  otp:{
-    value:{
+  chips:{
+    type:Number,
+    default:0
+  },
+  money:{
+    type:Number,
+    default:0
+  },
+  type_of_login:{
+    type:String,
+    enum:['normal','google','facebook'],
+    default:'normal'
+  },
+  social_id:{
+    google_id:{
       type:String
     },
-    expired_at:{
+    facebook_id:{
       type:String
     }
+  },
+  device_id:{
+    type:'String',
+    required:true
+  },
+  platform:{
+    type:'String',
+    required:true
+  },
+  profile_pic:{
+    type:'String'
   },
   reset_token:{
     value:{
@@ -99,16 +136,13 @@ userSchema.methods.generateOTP = function(){
 userSchema.methods.generateResetToken = function(){
   var user = this;
   var access = 'auth';
-  var token;
+  var token = cryptr.encrypt(user._id);
 
-  return bcrypt.hash(user._id.toHexString(), 10).then(function(hash) {
-    user.reset_token.value = hash;
-    token = hash;
-    user.reset_token.expired_at = Date.now() + 1800000;
-    return user.save().then(()=>{
-      console.log('Passed : '+token)
-      return token;
-    });
+  user.reset_token.value = token;
+  user.reset_token.expired_at = Date.now() + 1800000;
+
+  return user.save().then(()=>{
+    return {'email':user.email,'token':token};
   });
 
 };
