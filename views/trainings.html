@@ -1,0 +1,95 @@
+{{> header_before}}
+<div class="page-header header-filter short-header" data-parallax="true" style="background-image: url('../../assets/img/img/gym.jpeg'); transform: translate3d(0px, 10px, 0px);">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 text-center">
+                <h1 class="title">Start Now</h1>
+                <h4>Choose suitable training package for you & Start Training..</h4>
+                <br>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="main main-raised projects-4">
+    <div class="container">
+
+        {{#each data.trainings}}
+        <div class="row padding-50 padding-sideways-100">
+            <div class="col-md-6 {{ evenOdd @index 'pull-right' ''}}">
+                <div class="card card-background" style="background-image: url('{{image}}')">
+                    <a href="#pablo">
+
+                    </a>
+                    <div class="card-content">
+                        <a href="#pablo">
+                            <h3 class="card-title">{{name}}</h3>
+                        </a>
+                        <br/>
+                        <p class="card-description">
+                            {{description}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="col-md-12" style="padding:20px;"> </div>
+                <div class="col-md-6">
+                    <div class="icon icon-info">
+                        <i class="material-icons">dashboard</i>
+                    </div>
+                    <div class="description">
+                        <h4 class="info-title">Elements </h4>
+                        <p class="description">
+                            {{element}}
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="icon icon-primary">
+                        <i class="material-icons">branding_watermark</i>
+                    </div>
+                    <div class="description">
+                        <h4 class="info-title">Specific Requirements</h4>
+                        <p class="description">
+                            {{spec_req}}
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-12" style="padding:20px;"> </div>
+                <div class="col-md-6">
+                    <div class="icon icon-danger">
+                        <i class="material-icons">playlist_add_check</i>
+                    </div>
+                    <div class="description">
+                        <h4 class="info-title">Terms of Training</h4>
+                        <p class="description">
+                            {{sessions}} Sessions | {{duration}} | {{time_per_session}} per session
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="icon icon-info">
+                        <i class="material-icons">attach_money</i>
+                    </div>
+                    <div class="description">
+                        <h4 class="info-title">Cost of Training</h4>
+                        <p class="description">
+                            $ {{cost}}
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-12" style="padding:20px;"> </div>
+                <div class="col-md-4 col-md-offset-4">
+                    <button class="btn btn-primary btn-round col-md-12">Book Now<div class="ripple-container"></div></button>
+                </div>
+            </div>
+        </div>
+        <hr>
+        {{/each}}
+    </div>
+</div>
+{{> footer}}

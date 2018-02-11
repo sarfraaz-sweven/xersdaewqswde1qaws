@@ -1,0 +1,125 @@
+{{> header_before}}
+<div class="page-header header-filter  short-header" data-parallax="true" style="background-image: url('{{data.mainBlog.image}}'); transform: translate3d(0px, 1800.33px, 0px);">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 text-center">
+                <h1 class="title">{{data.mainBlog.title}}</h1>
+                <br>
+                <a href="#pablo" class="btn btn-rose btn-round btn-lg">
+                    <i class="material-icons">format_align_left</i> Read Article
+                <div class="ripple-container"></div></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="main main-raised blog-post">
+		<div class="container">
+            <div class="section section-text">
+                <div class="row">
+    				<div class="col-md-8 col-md-offset-2">
+        				<h3 class="title">{{data.mainBlog.title}}</h3>
+    					<p>{{{data.mainBlog.blog_text}}}</p>
+    				</div>
+				</div>
+			</div>
+
+			<div class="section section-blog-info">
+                <div class="row">
+					<div class="col-md-8 col-md-offset-2">
+
+						<div class="row">
+							<div class="col-md-6">
+								<div class="blog-tags">
+                                    Tags:
+                                    {{#each data.tagsArray}}
+									<span class="label label-primary">{{this}}</span>
+                                    {{/each}}
+								</div>
+							</div>
+							</div>
+
+						<hr>
+					</div>
+    			</div>
+            </div>
+
+			<div class="section section-comments">
+				<div class="row">
+					<div class="col-md-8 col-md-offset-2">
+						<div class="media-area">
+							<h3 class="title text-center">{{data.commentsCount}} Comments</h3>
+                            {{#each data.comments}}
+							<div class="media">
+                                <a class="pull-left">
+                                    <div class="avatar">
+                                        {{#if commentor.profile_pic}}
+                                        <img class="media-object" src="{{commentor.profile_pic}}" alt="...">
+                                        {{else}}
+                                        <img class="media-object" src="/images/default-user.png" alt="...">
+                                        {{/if}}
+                                    </div>
+                                </a>
+                                <div class="media-body">
+									<h4 class="media-heading">{{commentor.name}}<small class="margin-left-20">{{timeAgo created_on}}</small></h4>
+									<h6 class="text-muted"></h6>
+									<p>{{text}}</p>
+								</div>
+							</div>
+                            {{/each}}
+						</div>
+						  <h3 class="title text-center">Post your comment</h3>
+						  <div class="media media-post">
+							  <a class="pull-left author" href="#pablo">
+								  <div class="avatar">
+										<img class="media-object" alt="64x64" src="/images/default-user.png">
+								  </div>
+							  </a>
+							  <div class="media-body">
+									<div class="form-group is-empty"><textarea class="form-control" placeholder="Write some nice stuff or nothing..." rows="6"></textarea><span class="material-input"></span></div>
+									<div class="media-footer">
+										 <a href="#pablo" class="btn btn-primary btn-round btn-wd pull-right">Post Comment</a>
+									</div>
+							  </div>
+						  </div> <!-- end media-post -->
+					</div>
+				</div>
+			</div>
+
+        </div>
+    </div>
+
+    <div class="section bottom-padding-0">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="title text-center">Similar Stories</h2>
+                        <br>
+                        <div class="row">
+                            {{#each data.relatedBlogs}}
+                            <div class="col-md-4">
+                                <div class="card card-blog">
+                                    <div class="card-image">
+                                        <a href="/blogs/{{permalink}}">
+                                            <img class="img img-raised" src="{{image}}">
+                                        </a>
+                                        <div class="colored-shadow" style="background-image: url({{image}}); opacity: 1;"></div>
+                                    </div>
+    
+                                    <div class="card-content">
+                                        <h6 class="category text-info">{{category}}</h6>
+                                        <h4 class="card-title blog-short-title">
+                                            <a href="#pablo">{{title}}</a>
+                                        </h4>
+                                        <p class="card-description blog-short" >
+                                            {{{blog_text}}}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            {{/each}}        
+                        </div>
+                    </div>
+                </div>
+            </div>
+{{> footer}}

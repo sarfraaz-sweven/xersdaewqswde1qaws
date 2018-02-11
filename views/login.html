@@ -1,13 +1,68 @@
 {{> header_before}}
-  <!-- Full Width Column -->
-  <div class="content-wrapper">
+<div class="page-header header-filter" style="background-image: url('../assets/img/img/running.jpg'); background-size: cover; background-position: top center;">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
+            <div class="card card-signup">
+              <form class="form" action="/login" method="post" id="login_form">
+                <div class="header header-primary text-center">
+                  <h4 class="card-title">Log in</h4>
+                  <div class="social-line">
+                    <a href="#" class="btn btn-just-icon btn-simple">
+                      <i class="fa fa-facebook-square"></i>
+                    </a>
+                    <a href="#" class="btn btn-just-icon btn-simple">
+                      <i class="fa fa-google-plus"></i>
+                    </a>
+                  </div>
+                </div>
+                <p class="description text-center">Or Be Classical</p>
+                <div class="alert alert-danger" id="alert" style="display:none;">
+                    <div class="alert-icon">
+                      <i class="material-icons">error_outline</i>
+                    </div>
+                    <button type="button" class="close" aria-label="Close">
+                      <span aria-hidden="true"><i class="material-icons">clear</i></span>
+                    </button>
+                    <b>Error :</b> <span class='error'></span>
+                </div>
+                <div class="card-content">
+                  <div class="input-group">
+                    <span class="input-group-addon">
+                      <i class="material-icons">email</i>
+                    </span>
+                    <input type="text" class="form-control" placeholder="Email..." name="email">
+                  </div>
+  
+                  <div class="input-group">
+                    <span class="input-group-addon">
+                      <i class="material-icons">lock_outline</i>
+                    </span>
+                    <input type="password" placeholder="Password..." class="form-control"  name="password"/>
+                  </div>
+                  <span class="pull-right">
+                   <a href="/forgot-password" class="forgot">I Forgot My Password</a>
+                  </span>
+                </div>
+                <div class="footer text-center">
+                  <button type="submit" class="btn btn-primary btn-simple btn-wd btn-lg">Get Started</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+{{> footer}}
+      <!-- Full Width Column -->
+  <!-- <div class="content-wrapper">
     <div class="container">
-      <!-- Main content -->
+
       <div class="login-box">
         <div class="login-logo">
           <a href="../../index2.html"><b>Admin</b>LTE</a>
         </div>
-        <!-- /.login-logo -->
+
         <div class="login-box-body">
           <p class="login-box-msg">Login to start your session</p>
           <div class="alert alert-danger alert-dismissible" style="display:none" id="alert">
@@ -31,25 +86,23 @@
                   </label>
                 </div>
               </div>
-              <!-- /.col -->
+
               <div class="col-xs-4">
                 <button type="submit" class="btn btn-primary btn-block btn-flat">Login</button>
               </div>
-              <!-- /.col -->
+
             </div>
           </form>
 
-          <!-- /.social-auth-links -->
 
+          
           <a class="pull-right" href="/forgot_password">I forgot my password</a><br>
         </div>
-        <!-- /.login-box-body -->
-      </div>
-      <!-- /.login-box -->
 
-      <!-- /.content -->
+      </div>
+
+      
+
     </div>
-    <!-- /.container -->
-  </div>
-  <!-- /.content-wrapper -->
-{{> footer}}
+
+  </div> -->

@@ -1,0 +1,74 @@
+{{> header_before}}
+<div class="page-header header-filter  short-header subscribe-line" data-parallax="true" style="background-image: url(&quot;../assets/img/img/blog-running.jpg&quot;); transform: translate3d(0px, 1800.33px, 0px);">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 text-center">
+                <div class="col-md-6 col-md-offset-3">
+                    <div class="card">
+                        <div class="card-content pad-right-10   ">
+                            <form method="" action="">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="material-icons">search</i>
+                                            </span>
+                                            <div class="form-group is-empty mar-top-10">
+                                                <input type="email" value="" placeholder="Search here..." class="form-control">
+                                                <span class="material-input"></span>
+                                                <span class="material-input"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="main main-raised blog-post">
+    <div class="container">
+        <div class="section section-text">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <h3 class="title">Popular Questions</h3>
+                    <br>
+                    <div class="media-area">
+                        {{#each data.questions}}
+                        <div class="media">
+                            <a class="pull-left" href="#pablo">
+                                <div class="avatar">
+                                    {{#if asker.profile_pic}}
+                                    <img class="media-object" alt="Tim Picture" src="{{asker.profile_pic}}">
+                                    {{else}}
+                                    <img class="media-object" alt="Tim Picture" src="/images/default-user.png">
+                                    {{/if}}
+                                </div>
+                            </a>
+                            <div class="media-body">
+                                <h4 class="media-heading">{{asker.name}} <small>· {{timeAgo created_on}}</small></h4>
+
+                                <p>{{question}}</p>
+
+                                <div class="media-footer">
+                                    <a href="/forum/{{permalink}}" class="btn btn-primary btn-simple pull-right">
+                                         Read
+                                    </a>
+                                    <a href="/forum/{{permalink}}" class="btn btn-default btn-simple pull-right">
+                                        {{ansCount}} answers
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{> footer}}

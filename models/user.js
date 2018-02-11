@@ -24,12 +24,6 @@ var userSchema = new mongoose.Schema({
         message:'{value} is not a valid email'
     }
   },
-  mobile_no:{
-    type:String,
-    minlength:10,
-    maxlength:10,
-    required:true
-  },
   created_at:{
     type:String,
     required:true
@@ -43,22 +37,33 @@ var userSchema = new mongoose.Schema({
     type:Boolean,
     default:false
   },
+  is_trainer:{
+    type:Boolean,
+    default:false
+  },
   is_active:{
     type:Boolean,
     default:true
   },
-  chips:{
-    type:Number,
-    default:0
+  can_blog:{
+    type:Boolean,
+    default:false
   },
-  money:{
-    type:Number,
-    default:0
+  can_comment:{
+    type:Boolean,
+    default:true
   },
-  type_of_login:{
-    type:String,
-    enum:['normal','google','facebook'],
-    default:'normal'
+  can_question:{
+    type:Boolean,
+    default:true
+  },
+  can_answer:{
+    type:Boolean,
+    default:true
+  },
+  question_balance:{
+    type: Number,
+    default: 0
   },
   social_id:{
     google_id:{
@@ -70,16 +75,20 @@ var userSchema = new mongoose.Schema({
   },
   device_id:{
     type:'String',
-    required:true
-  },
-  platform:{
-    type:'String',
-    required:true
+    required:false
   },
   profile_pic:{
     type:'String'
   },
   reset_token:{
+    value:{
+      type:String
+    },
+    expired_at:{
+      type:String
+    }
+  },
+  otp:{
     value:{
       type:String
     },
@@ -144,7 +153,6 @@ userSchema.methods.generateResetToken = function(){
   return user.save().then(()=>{
     return {'email':user.email,'token':token};
   });
-
 };
 
 userSchema.methods.removeToken = function(token){
@@ -240,26 +248,29 @@ userSchema.statics.findByCredentials = function(email,password){
   return User.findOne({email}).then((user)=>{
 
     if(!email || !password)
-      return Promise.reject({"error":"Please enter Email Address & Password to continue."});
+      return Promise.reject({"status":0,"error":"Please enter Email Address & Password to continue."});
 
     if(!validator.isEmail(email))
-      return Promise.reject({"error":"Invalid Email address passed."});
+      return Promise.reject({"status":0,"error":"Invalid Email address passed."});
 
     if(!user)
-      return Promise.reject({"error":"Authentication failed! Please check your credentials & try again."});
+      return Promise.reject({"status":0,"error":"Authentication failed! Please check your credentials & try again."});
 
     if(user.is_verified === false)
-      return Promise.reject({"error":"This account is not verified, complete the verification & try again"});
+      return Promise.reject({"status":0,"error":"This account is not verified, complete the verification & try again"});
 
     if(user.is_active === false)
-      return Promise.reject({"error":"Sorry, you cannot login as your account is suspended."});
+      return Promise.reject({"status":0,"error":"Sorry, you cannot login as your account is suspended."});
+
+    if(user.is_deleted === true)
+      return Promise.reject({"status":0,"error":"Sorry, you cannot login as your account is deleted."});
 
     return new Promise((resolve,reject)=>{
       bcrypt.compare(password, user.password).then(function(res) {
         if(res)
           return resolve(user);
         else {
-          return reject({"error":"Authentication failed! Please check your credentials & try again."});
+          return reject({"status":0,"error":"Authentication failed! Please check your credentials & try again."});
         }
       });
     });

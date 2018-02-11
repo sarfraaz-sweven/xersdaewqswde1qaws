@@ -1,7 +1,138 @@
 {{> header_before}}
-  <div class="content-wrapper">
+<div class="page-header header-filter" filter-color="purple" style="background-image: url('../assets/img/img/running.jpg'); background-size: cover; background-position: top center;">
+  <div class="container">
+  <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+
+      <div class="card card-signup">
+                    <h2 class="card-title text-center">Register</h2>
+                    <div class="row">
+                      <div class="col-md-5 col-md-offset-1 hidden-sm hidden-xs ">
+                        <div class="info info-horizontal">
+                          <div class="icon icon-info">
+                            <img class="icon-feature-img" src="./assets/img/img/register-here.png">
+                          </div>
+                          <div class="description">
+                            <h4 class="info-title">Register here</h4>
+                            <p class="description">
+                              Enter your details or signup wit your facebook / google account & start fit & healthy journy with us.
+                            </p>
+                          </div>
+                        </div>
+
+                        <div class="info info-horizontal">
+                          <div class="icon icon-info">
+                            <img class="icon-feature-img" src="./assets/img/img/start-training.png">
+                          </div>
+                          <div class="description">
+                            <h4 class="info-title">Start Training</h4>
+                            <p class="description">
+                              Book your sessions & start training with the help of your personal trainer right here.
+                            </p>
+                          </div>
+                        </div>
+
+                        <div class="info info-horizontal">
+                          <div class="icon icon-info">
+                            <img class="icon-feature-img" src="./assets/img/img/connect-with-people.png">
+                          </div>
+                          <div class="description">
+                            <h4 class="info-title">Connect</h4>
+                            <p class="description">
+                              Read & comment on blogs, forum to connect with like minded people who are as consious as you when it comes to fitness.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+
+                    <div class="col-md-5 col-md-offset-0 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
+                      <div class="social text-center">
+                            <button class="btn btn-just-icon btn-round btn-facebook">
+                                <i class="fa fa-facebook"> </i>
+                                <div class="ripple-container"></div>
+                            </button>
+                            <button class="btn btn-just-icon btn-round btn-google">
+                              <i class="fa fa-google"> </i>
+                              <div class="ripple-container"></div>
+                            </button>
+                            <h4> or be classical </h4>
+                            </div>
+                            <div class="alert alert-danger" id="alert" style="display:none;">
+                                <div class="alert-icon">
+                                  <i class="material-icons">error_outline</i>
+                                </div>
+                                <button type="button" class="close" aria-label="Close">
+                                  <span aria-hidden="true"><i class="material-icons">clear</i></span>
+                                </button>
+                                <b>Error :</b> <span class='error'></span>
+                            </div>
+            
+                          <form class="form" action="" method="post" id="signup_form">
+                            <div class="card-content">
+                              <div class="input-group">
+                                <span class="input-group-addon">
+                                  <i class="material-icons">face</i>
+                                </span>
+                                <input type="text" class="form-control" placeholder="Full Name..." name="name">
+                              </div>
+
+                              <div class="input-group">
+                                <span class="input-group-addon">
+                                  <i class="material-icons">email</i>
+                                </span>
+                                <input type="text" class="form-control" placeholder="Email..." name="email">
+                              </div>
+
+                              <div class="input-group">
+                                <span class="input-group-addon">
+                                  <i class="material-icons">lock_outline</i>
+                                </span>
+                                <input type="password" placeholder="Password..." class="form-control" name="password"/>
+                              </div>
+
+                              <div class="input-group">
+                                <span class="input-group-addon">
+                                  <i class="material-icons">lock_outline</i>
+                                </span>
+                                <input type="password" placeholder="Confirm Password..." class="form-control" name="confirm_password"/>
+                              </div>
+
+                              <!-- If you want to add a checkbox to this form, uncomment this code -->
+
+                              <div class="checkbox">
+                                <label>
+                                  <input type="checkbox" name="optionsCheckboxes" checked>
+                                  I agree to the <a href="#something">terms and conditions</a>.
+                                </label>
+                              </div>
+                            </div>
+                            <div class="footer text-center">
+                              <button type="submit" class="btn btn-primary btn-round">Get Started</a>
+                            </div>
+                          </form>
+                          <form action="" method="post" id="otp_form" style="display:none;">
+                             <div class="input-group">
+                                <span class="input-group-addon">
+                                  <i class="material-icons">lock_outline</i>
+                                </span>
+                                <input type="password" placeholder="Verification code .. " class="form-control" name="otp"/>
+                                <input type="hidden" name="token" value="" id="token">
+                              </div>
+                              <div class="footer text-center">
+                                <button type="submit" class="btn btn-primary btn-round">Verify</a>
+                              </div>
+                            </form>
+                          </div>
+                      </div>
+                    </div>
+
+            </div>
+        </div>
+</div>
+
+<!-- <div class="content-wrapper">
     <div class="container">
-      <!-- Main content -->
+
       <div class="register-box">
         <div class="register-logo">
           <a href="../../index2.html"><b>Admin</b>LTE</a>
@@ -38,11 +169,11 @@
                 </label>
               </div>
             </div>
-            <!-- /.col -->
+
             <div class="col-xs-4">
               <button type="submit" class="btn btn-primary btn-block btn-flat">Sign up</button>
             </div>
-            <!-- /.col -->
+
           </div>
         </form>
 
@@ -53,19 +184,19 @@
             <span class="glyphicon glyphicon-lock form-control-feedback"></span>
           </div>
           <div class="row">
-            <!-- /.col -->
+
             <div class="col-xs-4 col-xs-offset-4">
               <button type="submit" class="btn btn-primary btn-block btn-flat">Verify OTP</button>
             </div>
-            <!-- /.col -->
+
           </div>
         </form>
 
         <a href="/login" class="text-center">Already have an account here?</a>
       </div>
     </div>
-    <!-- /.content -->
-    </div>
-    <!-- /.container -->
+
   </div>
+
+  </div> -->
 {{> footer}}

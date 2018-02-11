@@ -25,7 +25,7 @@ admin_routes.post('/admin/signin',(req,res)=>{
     res.header('x-auth',token).send(token);
   })
   .catch((err)=>{
-    res.status(400).send({'error':err,'code':'0011'});
+    res.status(200).send({'error':err,'code':'0011'});
   });
 });
 
@@ -47,7 +47,7 @@ admin_routes.post('/admin/login',(req,res)=>{
     res.header('x-auth',token).status(200).send();
   })
   .catch((err)=>{
-    res.status(400).send({'error':err,'code':'0012'});
+    res.status(200).send({'error':err,'code':'0012'});
   });
 });
 
@@ -96,7 +96,7 @@ admin_routes.patch('/admin/users/changeState',authenticateAdmin,(req,res)=>{
       });
   })
   .catch((err)=>{
-    res.status(400).send({'error':err,'code':'0014'});
+    res.status(200).send({'error':err,'code':'0014'});
   });
 });
 
@@ -104,7 +104,7 @@ admin_routes.delete('/admin/logout',authenticateAdmin,(req,res)=>{
   req.admin.removeToken(req.token).then(()=>{
     res.status(200).send({'message':'Admin Logged out Successfully'});
   },()=>{
-    res.status(400).send({'message':'Admin Logged out Successfully'});
+    res.status(200).send({'message':'Admin Logged out Successfully'});
   });
 });
 

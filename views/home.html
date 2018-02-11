@@ -1,20 +1,450 @@
+{{> header_before}}
 
-  {{> header_before}}
-  <!-- Full Width Column -->
-  <div class="content-wrapper">
+{{#if login}}
+<div class="page-header header-filter  short-header subscribe-line" data-parallax="true" style="background-image: url(&quot;../assets/img/img/blog-running.jpg&quot;); transform: translate3d(0px, 1800.33px, 0px);">
     <div class="container">
-      <!-- Main content -->
-      <section class="content">
-          <div class="box-header with-border">
-            <h3 class="box-title">Homepage</h3>
-          </div>
-          <div class="box-body">
-            {{pageTitle}}
-          </div>
-          <!-- /.box-body -->
-        <!-- /.box -->
-      </section>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 text-center">
+                <div class="col-md-6 col-md-offset-3">
+                    <div class="card">
+                        <div class="card-content pad-right-10   ">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-      <!-- /.content -->
-  </div>
-  {{> footer}}
+</div>
+{{else}}
+<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+    <div class="carousel slide" data-ride="carousel">
+
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#carousel-example-generic" data-slide-to="0" class=""></li>
+            <li data-target="#carousel-example-generic" data-slide-to="1" class=""></li>
+            <li data-target="#carousel-example-generic" data-slide-to="2" class="active"></li>
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+            <div class="item">
+                <img src="../assets/img/img/see-growth.jpg" alt="Awesome Image">
+                <div class="carousel-caption">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6 col-md-offset-3 center text-left">
+                                <h1 class="title text-white">Do it Now</h1>
+                                <h4>A healthy & fit body is a luxury which can only be earned by working out.</h4>
+                                <br>
+
+                                <div class="buttons">
+                                    <a href="#pablo" class="btn btn-primary btn-lg">
+                                        Read More
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <img src="../assets/img/img/couple.jpg" alt="Awesome Image">
+                <div class="carousel-caption">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6 col-md-offset-3 center text-left">
+                                <h1 class="title text-white">Do it Now</h1>
+                                <h4>A healthy & fit body is a luxury which can only be earned by working out.</h4>
+                                <br>
+
+                                <div class="buttons">
+                                    <a href="#pablo" class="btn btn-primary btn-lg">
+                                        Read More
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item active">
+                <img src="../assets/img/img/trainer.jpg" alt="Awesome Image">
+                <div class="carousel-caption">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6 col-md-offset-3 center text-left">
+                                <h1 class="title text-white">Do it Now</h1>
+                                <h4>A healthy & fit body is a luxury which can only be earned by working out.</h4>
+                                <br>
+
+                                <div class="buttons">
+                                    <a href="#pablo" class="btn btn-primary btn-lg">
+                                        Read More
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+            <i class="material-icons">keyboard_arrow_left</i>
+        </a>
+        <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+            <i class="material-icons">keyboard_arrow_right</i>
+        </a>
+    </div>
+</div>
+{{/if}}
+
+<div class="main main-raised">
+
+    {{#if login}}
+    <!-- Dashboard -->
+    <div class="features-2">
+
+        <div class="row">
+
+            <div class="col-md-10 col-md-offset-1">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-content content-info">
+                            <h5 class="category-social">
+                                <i class="material-icons">timeline</i> Unconventional Training
+                                <span class="pull-right">Ends on 28 Feb</span>
+                            </h5>
+                            <div class='row'>
+                                <div class="col-xs-4">
+                                    <h4 class="card-numbers">8</h4>
+                                    <h6 class="card-numbers-tag">Total
+                                        <br/>Sessions</h6>
+                                </div>
+                                <div class="col-xs-4">
+                                    <h4 class="card-numbers">5</h4>
+                                    <h6 class="card-numbers-tag">Sessions
+                                        <br/>Completed</h6>
+                                </div>
+                                <div class="col-xs-4">
+                                    <h4 class="card-numbers">3</h4>
+                                    <h6 class="card-numbers-tag">Sessions
+                                        <br/>Remaining</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-content content-success">
+                            <h5 class="category-social">
+                                <i class="material-icons">av_timer</i> Next Session
+                                <span class="pull-right">21 Feb</span>
+                            </h5>
+                            <div class='row'>
+                                <div class="col-xs-12">
+                                    <h4 class="card-numbers">08:30 AM</h4>
+                                    <h4 class="card-numbers-tag">Unconventional Training</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    {{else}}
+    <!-- Why US -->
+    <div class="features-2">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 text-center">
+                <h2 class="title">Welcome to Fitness Marshal</h2>
+                <h5 class="description">Fitness Marshal is your best pick for any fitness related concern if you're living in Singapore.</h5>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="info info-horizontal">
+                    <div class="icon icon-info">
+                        <img class="icon-feature-img" src="./assets/img/img/icon-training.png" />
+                    </div>
+                    <div class="description">
+                        <h4 class="info-title">Get Trained</h4>
+                        <p>By the professional trainers at your place & time. We'll provide you a comolete training for achieving
+                            your fitness goals.</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-md-4">
+                <div class="info info-horizontal">
+                    <div class="icon icon-danger">
+                        <img class="icon-feature-img" src="./assets/img/img/icon-ask.png" />
+                    </div>
+                    <div class="description">
+                        <h4 class="info-title">Ask here</h4>
+                        <p>About any of your fitness or health related concerns. We'll make sure that 1 Professional trainer
+                            / Health expert answers your question & help you with your fitness.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="info info-horizontal">
+                    <div class="icon icon-success">
+                        <img class="icon-feature-img" src="./assets/img/img/icon-blog.png" />
+                    </div>
+                    <div class="description">
+                        <h4 class="info-title">Read Fitness</h4>
+                        <p>Head over to our blogs section to read about fitness & health related topics. Comment down in the
+                            blog to get more insights on the topic by the writer.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- How to start -->
+    <div class="features-1 back-change">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h2 class="title">How to start ? </h2>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="info">
+                    <div class="icon icon-info">
+                        <img class="icon-feature-img" src="./assets/img/img/icon-browse.png" />
+                    </div>
+                    <h4 class="info-title">Browse Trainings</h4>
+                    <p>Go to our trainings section & look over a wide variety of training packages we provide. If you can't
+                        decide, go to forum & ask professionals to know which plan is perfect fit for you.</p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="info">
+                    <div class="icon icon-success">
+                        <img class="icon-feature-img" src="./assets/img/img/icon-schedule.png" />
+                    </div>
+                    <h4 class="info-title">Book & Set Schedule</h4>
+                    <p>Book your training & set schedules & place for all the sessions in that package according to your convinience.
+                        You'll get confirmation within a day or two about your schedules & trainer.</p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="info">
+                    <div class="icon icon-danger">
+                        <img class="icon-feature-img" src="./assets/img/img/icon-start-hustle.png" />
+                    </div>
+                    <h4 class="info-title">Start the Hustle</h4>
+                    <p>Your trainer will reach on time & place when you've set the schedule & you'll also get notifications
+                        prior to each sessions. Happy Hustling!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/if}}
+
+    <!-- Trainings -->
+    <div class="pricing-1 section-image" style="background-image: url('../assets/img/img/ropes.jpg')" id="pricing-1">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 text-center">
+                    <h2 class="title">Chose your training</h2>
+                    <h5 class="description">In any training you will get a personal trainer at your place at your convinientn timings.</h5>
+                    <div class="section-space"></div>
+                </div>
+            </div>
+
+            <div class="row">
+
+                {{#each data.trainings}}
+                <div class="col-md-3">
+                    <div class="card card-pricing card-plain">
+                        <div class="card-content">
+                            <h6 class="category">{{name}}</h6>
+                            <div class="icon">
+                                <div class="icon-training">
+                                    <img src="{{icon}}" alt="">
+                                </div>
+                            </div>
+                            <h3 class="card-title">$ {{cost}}</h3>
+                            <p class="card-description">
+                                {{sessions}} Sessions | {{duration}} | {{time_per_session}}
+                            </p>
+                            <a href="#pablo" class="btn btn-white btn-round">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+                {{/each}}
+
+            </div>
+            <div class="row center mt30">
+                <a href="#pablo" class="btn btn-rose btn-round">View More Plans</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Blog List -->
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="title text-center">Latest Blogs</h2>
+                    <br>
+                    <div class="row">
+                        {{#each data.blogs}}
+                        <div class="col-md-4">
+                            <div class="card card-blog">
+                                <div class="card-image">
+                                    <a href="/blogs/{{permalink}}">
+                                        <img class="img img-raised" src="{{image}}">
+                                    </a>
+                                    <div class="colored-shadow" style="background-image: url({{image}}); opacity: 1;"></div>
+                                </div>
+
+                                <div class="card-content">
+                                    <h6 class="category text-info">{{category}}</h6>
+                                    <h4 class="card-title blog-short-title">
+                                        <a href="#pablo">{{title}}</a>
+                                    </h4>
+                                    <p class="card-description blog-short" >
+                                        {{{blog_text}}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        {{/each}}
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Testimonials -->
+    <div class="testimonials-1 section-image" style="background-image: url('assets/img/img/gym.jpeg')">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 text-center">
+                    <h2 class="title">Our Clients Love Us</h2>
+                    <h5 class="description">You need more information? Check what other persons are saying about our training. Below are some of
+                        our happy trainees.</h5>
+                </div>
+            </div>
+
+            <div class="row">
+
+                {{#each data.reviews}}
+                <div class="col-md-4">
+                    <div class="card card-testimonial">
+                        <div class="icon">
+                            <i class="material-icons">format_quote</i>
+                        </div>
+                        <div class="card-content">
+                            <h5 class="card-description">
+                                "{{review}}"
+                            </h5>
+                        </div>
+
+                        <div class="footer">
+                            <h4 class="card-title">{{name}}</h4>
+                            <div class="card-avatar">
+                                <a href="#pablo">
+                                    <img class="img" src="{{profile}}">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{/each}}
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- App store -->
+    <div class="features-3 back-change">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="phone-container">
+                    <img src="./assets/img/img/app-mockup.png">
+                </div>
+            </div>
+            <div class="col-md-6">
+
+                <br>
+                <br>
+                <!-- Some <br /> tags to push the text to align with the image, you can remove it if you have more text on the right side :-) -->
+
+                <h2 class="title">Find us on the app store</h2>
+
+                <div class="info info-horizontal">
+                    <div class="description">
+                        <p>Get our app from the app store on android & ios to keep your fitness trainer close to you. Book trainings
+                            or maintain schedules on the go. Give feedback on your training sessions held, & get instant
+                            notifications on changed scheules or any upcoming schedules.</p>
+                    </div>
+                </div>
+                <br/>
+                <br/>
+                <div class="info info-horizontal">
+                    <div class="row">
+                        <div class="col-md-4 app-store-img-holder">
+                            <a href="#">
+                                <img src="./assets/img/img/appstore.png" class="app-store-img" alt="fitness-marshal-on-app-store">
+                            </a>
+                        </div>
+                        <div class="col-md-4 app-store-img-holder">
+                            <a href="#">
+                                <img src="./assets/img/img/googleplay.png" class="app-store-img" alt="fitness-marshal-on-google-play">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Social icons -->
+    <div class="social-line social-line-white text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h4 class="title">Follow us on Social media !</h4>
+                </div>
+                <a href="#pablo" class="btn btn-twitter btn-round">
+                    <i class="fa fa-twitter"></i> Twitter
+                </a>
+                <a href="#pablo" class="btn btn-facebook btn-round">
+                    <i class="fa fa-facebook-square"></i> Facebook
+                </a>
+                <a href="#pablo" class="btn btn-google btn-round">
+                    <i class="fa fa-google-plus"></i> Google
+                </a>
+                <a href="#pablo" class="btn btn-instagram btn-round">
+                    <i class="fa fa-instagram"></i> Instagram
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container bg-primary section-down">
+        <!-- End Main Section -->
+        {{> footer}}

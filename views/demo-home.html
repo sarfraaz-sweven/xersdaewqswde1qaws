@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<link rel="apple-touch-icon" sizes="76x76" href="../public/assets/img/apple-icon.png">
+	<link rel="icon" type="image/png" href="../public/assets/img/favicon.png">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+	<title>{{pageTitle}}</title>
+
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+
+	<!--     Fonts and icons     -->
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+
+	<!-- CSS Files -->
+    <link href="../public/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../public/assets/css/material-kit.css?v=1.2.1" rel="stylesheet"/>
+    <link href="../public/style.css" rel="stylesheet"/>
+</head>
+
+<body class="login-page">
+	<nav class="navbar navbar-primary navbar-transparent navbar-absolute">
+    	<div class="container">
+        	<!-- Brand and toggle get grouped for better mobile display -->
+        	<div class="navbar-header">
+        		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example">
+            		<span class="sr-only">Toggle navigation</span>
+		            <span class="icon-bar"></span>
+		            <span class="icon-bar"></span>
+		            <span class="icon-bar"></span>
+        		</button>
+        		<a class="navbar-brand" href="#">Fitness Marshal</a>
+        	</div>
+
+        	<div class="collpase navbar-collapse">
+        		<ul class="nav navbar-nav navbar-right">
+              <li class="{{ ternary link 'home' 'active' ''}}">
+                <a href="/">
+                  Home
+                </a>
+              </li>
+              <li class="{{ ternary link 'training' 'active' ''}}">
+                <a href="/trainings">
+                  Training
+                </a>
+              </li>
+              <li class="{{ ternary link 'blog' 'active' ''}}">
+                <a href="/blogs">
+                  Blog
+                </a>
+              </li>
+              <li class="{{ ternary link 'forum' 'active' ''}}">
+                <a href="/forum">
+                  Forum
+                </a>
+							</li>
+              <li class="{{ ternary link 'signin' 'active' ''}}">
+									<a href="/signin">
+										Login
+									</a>
+								</li>
+								<li class="{{ ternary link 'signup' 'active' ''}}">
+									<a href="/signup">
+										Register
+									</a>
+								</li>
+        	</div>
+    	</div>
+    </nav>
+    <!-- ---------------------------------------------------------------------------------------- -->
+    
+        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+            <div class="carousel slide" data-ride="carousel">
+
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel-example-generic" data-slide-to="0" class=""></li>
+                    <li data-target="#carousel-example-generic" data-slide-to="1" class=""></li>
+                    <li data-target="#carousel-example-generic" data-slide-to="2" class="active"></li>
+                </ol>
+
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner">
+                    <div class="item">
+                        <img src="../public/assets/img/img/see-growth.jpg" alt="Awesome Image">
+                        <div class="carousel-caption">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-6 col-md-offset-3 center text-left">
+                                        <h1 class="title text-white">Do it Now</h1>
+                                        <h4>A healthy & fit body is a luxury which can only be earned by working out.</h4>
+                                        <br>
+    
+                                        <div class="buttons">
+                                            <a href="#pablo" class="btn btn-primary btn-lg">
+                                                Read More
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img src="../public/assets/img/img/couple.jpg" alt="Awesome Image">
+                        <div class="carousel-caption">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-6 col-md-offset-3 center text-left">
+                                        <h1 class="title text-white">Do it Now</h1>
+                                        <h4>A healthy & fit body is a luxury which can only be earned by working out.</h4>
+                                        <br>
+    
+                                        <div class="buttons">
+                                            <a href="#pablo" class="btn btn-primary btn-lg">
+                                                Read More
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item active">
+                        <img src="../public/assets/img/img/trainer.jpg" alt="Awesome Image">
+                        <div class="carousel-caption">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-6 col-md-offset-3 center text-left">
+                                        <h1 class="title text-white">Do it Now</h1>
+                                        <h4>A healthy & fit body is a luxury which can only be earned by working out.</h4>
+                                        <br>
+    
+                                        <div class="buttons">
+                                            <a href="#pablo" class="btn btn-primary btn-lg">
+                                                Read More
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                    <i class="material-icons">keyboard_arrow_left</i>
+                </a>
+                <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                    <i class="material-icons">keyboard_arrow_right</i>
+                </a>
+            </div>
+        </div>
+
+        <div class="main main-raised">
+            <!-- Why US -->
+            <div class="features-2">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2 text-center">
+                            <h2 class="title">Welcome to Fitness Marshal</h2>
+                            <h5 class="description">Fitness Marshal is your best pick for any fitness related concern if you're living in Singapore.</h5>
+                        </div>
+                    </div>
+        
+                    <div class="row">
+                        <div class="col-md-4">
+                               <div class="info info-horizontal">
+                                <div class="icon icon-info">
+                                    <i class="material-icons">group_work</i>
+                                </div>
+                                <div class="description">
+                                    <h4 class="info-title">Lorem</h4>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eu ante scelerisque, posuere dolor at, volutpat quam. Phasellus orci magna, sagittis at ullamcorper quis, sagittis sit amet ligula.</p>
+                                </div>
+                            </div>
+        
+                        </div>
+        
+                        <div class="col-md-4">
+                            <div class="info info-horizontal">
+                                <div class="icon icon-danger">
+                                    <i class="material-icons">airplay</i>
+                                </div>
+                                <div class="description">
+                                    <h4 class="info-title">Ipsum</h4>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eu ante scelerisque, posuere dolor at, volutpat quam. Phasellus orci magna, sagittis at ullamcorper quis, sagittis sit amet ligula.</p>
+                                </div>
+                            </div>
+                        </div>
+        
+                        <div class="col-md-4">
+                            <div class="info info-horizontal">
+                                <div class="icon icon-success">
+                                    <i class="material-icons">location_on</i>
+                                </div>
+                                <div class="description">
+                                    <h4 class="info-title">Dolor</h4>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eu ante scelerisque, posuere dolor at, volutpat quam. Phasellus orci magna, sagittis at ullamcorper quis, sagittis sit amet ligula.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        
+                </div>
+
+            <!-- Trainings -->
+            <div class="pricing-1 section-image" style="background-image: url('../public/assets/img/img/back-women.jpg')" id="pricing-1">
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6 col-md-offset-3 text-center">
+                            <h2 class="title">Chose your training</h2>
+                            <h5 class="description">In any training you will get a personal trainer at your place at your convinientn timings.</h5>
+                            <div class="section-space"></div>
+                        </div>
+                    </div>
+        
+                    <div class="row">
+        
+                        <div class="col-md-3">
+                            <div class="card card-pricing card-plain">
+                                <div class="card-content">
+                                    <h6 class="category">Unconventional Training</h6>
+                                    <div class="icon">
+                                        <i class="material-icons">weekend</i>
+                                    </div>
+                                    <h3 class="card-title">$360</h3>
+                                    <p class="card-description">
+                                        8 Sessions | 1 Month | No Equipments
+                                    </p>
+                                    <a href="#pablo" class="btn btn-white btn-round">Book Now</a>
+                                </div>
+                            </div>
+                        </div>
+        
+                        <div class="col-md-3">
+                            <div class="card card-pricing card-plain">
+                                <div class="card-content">
+                                    <h6 class="category"> Body Building</h6>
+                                    <div class="icon icon-rose">
+                                        <i class="material-icons">home</i>
+                                    </div>
+                                    <h3 class="card-title">$360</h3>
+                                    <p class="card-description">
+                                        8 Sessions | 1 Month | Your Preferred Gym
+                                    </p>
+                                    <a href="#pablo" class="btn btn-white btn-round">Book Now</a>
+                                </div>
+                            </div>
+                        </div>
+        
+                        <div class="col-md-3">
+                            <div class="card card-pricing card-plain">
+                                <div class="card-content">
+                                    <h6 class="category">Sports Enhanced</h6>
+                                    <div class="icon">
+                                        <i class="material-icons">business</i>
+                                    </div>
+                                    <h3 class="card-title">$360</h3>
+                                    <p class="card-description">
+                                        8 Sessions | 1 Month | Specialized Training
+                                    </p>
+                                    <a href="#pablo" class="btn btn-white btn-round">Book Now</a>
+                                </div>
+                            </div>
+                        </div>
+        
+                        <div class="col-md-3">
+                            <div class="card card-pricing card-plain">
+                                <div class="card-content">
+                                    <h6 class="category">Wedding Fab (Couple)</h6>
+                                    <div class="icon">
+                                        <i class="material-icons">account_balance</i>
+                                    </div>
+                                    <h3 class="card-title">$1500</h3>
+                                    <p class="card-description">
+                                        24 Sessions | 3 Months | Train with Partner
+                                    </p>
+                                    <a href="#pablo" class="btn btn-white btn-round">Book Now</a>
+                                </div>
+                            </div>
+                        </div>
+        
+                    </div>
+                    <div class="row center mt30">
+                    <a href="#pablo" class="btn btn-rose btn-round">View More Plans</a>
+                                    </div>        
+                </div>
+            </div>
+            <!-- Blog List -->
+            <div class="section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2 class="title text-center">Latest Blogs</h2>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="card card-blog">
+                                        <div class="card-image">
+                                            <a href="#pablo">
+                                                <img class="img img-raised" src="../public/assets/img/examples/blog6.jpg">
+                                            </a>
+                                        <div class="colored-shadow" style="background-image: url(&quot;../assets/img/examples/blog6.jpg&quot;); opacity: 1;"></div></div>
+        
+                                        <div class="card-content">
+                                            <h6 class="category text-info">Enterprise</h6>
+                                            <h4 class="card-title">
+                                                <a href="#pablo">Autodesk looks to future of 3D printing with Project Escher</a>
+                                            </h4>
+                                            <p class="card-description">
+                                                Like so many organizations these days, Autodesk is a company in transition. It was until recently a traditional boxed software company selling licenses.<a href="#pablo"> Read More </a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+        
+                                <div class="col-md-4">
+                                    <div class="card card-blog">
+                                        <div class="card-image">
+                                            <a href="#pablo">
+                                                <img class="img img-raised" src="../public/assets/img/examples/blog8.jpg">
+                                            </a>
+                                        <div class="colored-shadow" style="background-image: url(&quot;../assets/img/examples/blog8.jpg&quot;); opacity: 1;"></div></div>
+                                        <div class="card-content">
+                                            <h6 class="category text-success">
+                                                Startups
+                                            </h6>
+                                            <h4 class="card-title">
+                                                <a href="#pablo">Lyft launching cross-platform service this week</a>
+                                            </h4>
+                                            <p class="card-description">
+                                                Like so many organizations these days, Autodesk is a company in transition. It was until recently a traditional boxed software company selling licenses.<a href="#pablo"> Read More </a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+        
+                                <div class="col-md-4">
+                                    <div class="card card-blog">
+                                        <div class="card-image">
+                                            <a href="#pablo">
+                                                <img class="img img-raised" src="../public/assets/img/examples/blog7.jpg">
+                                            </a>
+                                        <div class="colored-shadow" style="background-image: url(&quot;../assets/img/examples/blog7.jpg&quot;); opacity: 1;"></div></div>
+        
+                                        <div class="card-content">
+                                            <h6 class="category text-danger">
+                                                <i class="material-icons">trending_up</i> Enterprise
+                                            </h6>
+                                            <h4 class="card-title">
+                                                <a href="#pablo">6 insights into the French Fashion landscape</a>
+                                            </h4>
+                                            <p class="card-description">
+                                                Like so many organizations these days, Autodesk is a company in transition. It was until recently a traditional boxed software company selling licenses.<a href="#pablo"> Read More </a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+        
+        
+                            </div>
+        
+                        </div>
+        
+                    </div>
+                </div>
+            </div>
+            <!-- Social icons -->
+            <div class="social-line social-line-white text-center">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4 class="title">Follow us on Social media !</h4>
+                        </div>
+                            <a href="#pablo" class="btn btn-twitter btn-round">
+                                <i class="fa fa-twitter"></i> Twitter
+                            </a>
+                            <a href="#pablo" class="btn btn-facebook btn-round">
+                                <i class="fa fa-facebook-square"></i> Facebook
+                            </a>
+                            <a href="#pablo" class="btn btn-google btn-round">
+                                <i class="fa fa-google-plus"></i> Google
+                            </a>
+                            <a href="#pablo" class="btn btn-instagram btn-round">
+                                <i class="fa fa-instagram"></i> Instagram
+                            </a>
+                    </div>
+                </div>
+            </div>
+            <div class="container bg-primary section-down">
+    <!-- End Main Section -->
+<footer class="footer">
+    <div class="container">
+        <nav class="pull-left">
+            <ul>
+            <li>
+                <a href="/">
+                Home
+                </a>
+            </li>
+            <li>
+                <a href="/trainings">
+                Training
+                </a>
+            </li>
+            <li>
+                <a href="/forum">
+                Forum
+                </a>
+            </li>
+            <li>
+                <a href="/blog">
+                Blog
+                </a>
+            </li>
+            </ul>
+        </nav>
+        <div class="copyright stable">
+            &copy; <script>document.write(new Date().getFullYear())</script>, made with <i class="fa fa-heart heart"></i> by <a href="http://www.sweven.co.in" target="_blank">Sweven</a>
+        </div>
+    </div>
+  </footer>
+</div>
+  
+</body>
+  <!--   Core JS Files   -->
+  <script src="../public/assets/js/jquery.min.js" type="text/javascript"></script>
+  <script src="../public/assets/js/bootstrap.min.js" type="text/javascript"></script>
+  <script src="../public/assets/js/material.min.js"></script>
+  
+  <!--    Plugin for Date Time Picker and Full Calendar Plugin   -->
+  <script src="../public/assets/js/moment.min.js"></script>
+  
+  <!--	Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/   -->
+  <script src="../public/assets/js/nouislider.min.js" type="text/javascript"></script>
+  
+  <!--	Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker   -->
+  <script src="../public/assets/js/bootstrap-datetimepicker.js" type="text/javascript"></script>
+  
+  <!--	Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select   -->
+  <script src="../public/assets/js/bootstrap-selectpicker.js" type="text/javascript"></script>
+  
+  <!--	Plugin for Tags, full documentation here: http://xoxco.com/projects/code/tagsinput/   -->
+  <script src="../public/assets/js/bootstrap-tagsinput.js"></script>
+  
+  <!--	Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput   -->
+  <script src="../public/assets/js/jasny-bootstrap.min.js"></script>
+  
+  <script src="assets/assets-for-demo/modernizr.js" type="text/javascript"></script>
+    <!--    Plugin For Google Maps   -->
+  <!-- <script  type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script> -->
+  
+  <!--    Control Center for Material Kit: activating the ripples, parallax effects, scripts from the example pages etc    -->
+  <script src="../public/assets/js/material-kit.js?v=1.2.1" type="text/javascript"></script>
+  <script src="../public/main.js" type="text/javascript"></script>
+  </html>
+    

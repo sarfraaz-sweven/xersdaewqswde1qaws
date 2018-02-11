@@ -1,19 +1,49 @@
+var regEmail = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+
 $('#login_form').submit(function(e){
   e.preventDefault();
-  $.ajax({
-    url:'/login',
-    method:'post',
-    data:$(this).serialize(),
-    success:function(data){
-      window.location.replace("/users/me");
-      $('#alert').hide();
-    },
-    error:function(err){
-      var er = JSON.parse(err.responseText);
-      $('#alert').find('p').text(er.error);
-      $('#alert').show();
-    }
-  })
+  console.log("Login hit");
+  if(($(this).find('input[name="email"]').val().trim() == "") || regEmail.test($(this).find('input[name="email"]').val().trim()) == false )
+  {
+    $('#alert').find('span.error').text("Please Enter Valid Email Address");
+    $('#alert').show();
+  }
+  else if($(this).find('input[name="password"]').val().trim() == "" || $(this).find('input[name="password"]').val().trim().length < 6)
+  {
+    $('#alert').find('span.error').text("Password must be at least 6 chars long");
+    $('#alert').show();
+  }
+  else
+  {
+    $.ajax({
+      url:'/login',
+      method:'post',
+      data:$(this).serialize(),
+      success:function(data){
+        console.log('Data',data);
+        if(data.status == 1)
+        {
+          window.location.replace("/");
+          $('#alert').hide();
+        }
+        else
+        {
+          $('#alert').find('span.error').text(data.error);
+          $('#alert').show();
+        }
+      },
+      error:function(err){
+        var er = JSON.parse(err.responseText);
+        $('#alert').find('span').text(er.error);
+        $('#alert').show();
+      }
+    })
+  }
+
+});
+
+$("#alert").find("button.close").on('click',function(){
+  $('#alert').hide();
 });
 
 $('#login_form_admin').submit(function(e){
@@ -35,33 +65,57 @@ $('#login_form_admin').submit(function(e){
 });
 
 $('#signup_form').submit(function(e){
+  console.log("Damn");
   e.preventDefault();
   var form = this;
-  if($('input[name="password"]').val() == $('input[name="confirm_password"]').val())
+  if($(this).find('input[name="name"]').val().trim().length < 1)
   {
+    $('#alert').find('span.error').text("Please Enter Valid Name");
+    $('#alert').show();
+  }
+  else if(($(this).find('input[name="email"]').val().trim() == "") || regEmail.test($(this).find('input[name="email"]').val().trim()) == false )
+  {
+    $('#alert').find('span.error').text("Please Enter Valid Email Address");
+    $('#alert').show();
+  }
+  else if($(this).find('input[name="password"]').val().trim() == "" || $(this).find('input[name="password"]').val().trim().length < 6)
+  {
+    $('#alert').find('span.error').text("Password must be at least 6 chars long");
+    $('#alert').show();
+  }
+  else if($('input[name="password"]').val().trim() != $('input[name="confirm_password"]').val().trim())
+  {
+    $('#alert').find('span.error').text("Both Passwords must match");
+    $('#alert').show();
+  }
+  else{
     $.ajax({
       url:'/signin',
       method:'post',
       data:$(form).serialize(),
-      success:function(token){
-        $('#alert').hide();
-        $(form).hide();
-        $('#token').val(token)
-        $('#otp_form').show();
+      success:function(data){
+        console.log(JSON.stringify(data));
+        if(data.status == 1)
+        {
+          $('#alert').hide();
+          $(form).hide();
+          $('#token').val(data.token)
+          $('#otp_form').show();
+        }
+        else
+        {
+          $('#alert').find('span.error').text(data.error);
+          $('#alert').show();
+        }
       },
       error:function(err){
         var er = JSON.parse(err.responseText);
-        $('#alert').find('p').text(er.error);
+        $('#alert').find('span.error').text(er.error);
         $('#alert').show();
       }
     });
   }
-  else{
-    $('#alert').find('p').text("Passwords not matching!");
-    $('#alert').show();
-  }
 });
-
 
 $('#signup_form_admin').submit(function(e){
   e.preventDefault();
@@ -96,12 +150,12 @@ $('#otp_form').submit(function(e){
     method:'post',
     data:$(this).serialize(),
     success:function(data){
-      window.location.replace("/users/me");
+      window.location.replace("/");
       $('#alert').hide();
     },
     error:function(err){
       var er = JSON.parse(err.responseText);
-      $('#alert').find('p').text(er.error);
+      $('#alert').find('span.error').text(er.error);
       $('#alert').show();
     }
   })

@@ -2,7 +2,7 @@ var {User} = require('./../models/user');
 var {Admin} = require('./../models/admin');
 
 var authenticate = (req,res,next) => {
-  // var token = req.session.auth; //in case of web access
+  var token = req.session.auth; //in case of web access
   if(req.body.token)
   {
     User.findByToken(req.body.token).then((user)=>{
@@ -24,8 +24,36 @@ var authenticate = (req,res,next) => {
   }
 };
 
+var isLoggedIn = (req,res,next) => {
+  var token = req.session.auth; //in case of web access
+  console.log("Token",req.session.auth);
+  if(token)
+  {
+    User.findByToken(token).then((user)=>{
+      if(!user)
+      {
+        req.loggedIn = false;
+        next();
+      }
+
+      req.loggedIn = true;
+      req.user = user;
+      req.token = token;
+      next();
+    })
+    .catch((err)=>{
+      req.loggedIn = false;
+      next();
+    });
+  }
+  else{
+    req.loggedIn = false;
+    next();
+  }
+};
+
 var authenticateAdmin = (req,res,next) => {
-  // var token = req.session.auth; //in case of web access
+  var token = req.session.auth; //in case of web access
   if(req.body.token)
   {
     Admin.findByToken(token).then((admin)=>{
@@ -46,4 +74,4 @@ var authenticateAdmin = (req,res,next) => {
   }
 };
 
-module.exports = {authenticate,authenticateAdmin};
+module.exports = {authenticate,authenticateAdmin,isLoggedIn};

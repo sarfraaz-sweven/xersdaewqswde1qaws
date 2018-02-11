@@ -1,0 +1,47 @@
+{{> header_before}}
+<div class="page-header header-filter short-header" data-parallax="true" style="background-image: url('../assets/img/bg5.jpg'); transform: translate3d(0px, 10px, 0px);">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 text-center">
+                <h1 class="title">The Fitness Blog</h1>
+                <h4>The weekly updated blog for health & fitness related stuff.</h4>
+                <br>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="main main-raised blog-post">
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-10 col-md-offset-1">
+
+            {{#each data.blogs}}
+            <div class="card card-plain card-blog">
+                <div class="row">
+                    <div class="col-md-5 {{ evenOdd @index 'pull-right' ''}}">
+                        <div class="card-image">
+                            <img class="img img-raised" src="{{image}}">
+                        <div class="colored-shadow" style="background-image: url('{{image}}'); opacity: 1;"></div></div>
+                    </div>
+                    <div class="col-md-7">
+                        <h6 class="category text-info">{{category}}</h6>
+                        <h3 class="card-title">
+                            <a href="/blogs/{{permalink}}">{{title}}</a>
+                        </h3>
+                        <p class="card-description blog-short">
+                            {{{blog_text}}}
+                        </p><a href="/blogs/{{permalink}}"> Read More </a>
+                        <p class="author">
+                            {{timeAgo created_on}}
+                    </p></div>
+                </div>
+            </div>
+            {{/each}}
+
+        </div>
+   </div>
+</div>
+</div>
+{{> footer}}

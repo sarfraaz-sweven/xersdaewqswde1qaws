@@ -15,6 +15,7 @@
     "cryptr": "^2.0.0",
     "express": "^4.16.2",
     "express-session": "^1.15.6",
+    "handlebars-helper-ternary": "^1.0.0",
     "hbs": "^4.0.1",
     "jsonwebtoken": "^8.1.0",
     "lodash": "^4.17.4",
@@ -22,6 +23,7 @@
     "nodemailer": "^4.3.1",
     "nodemailer-smtp-transport": "^2.7.4",
     "sha1": "^1.1.1",
+    "time-ago": "^0.2.1",
     "validator": "^9.1.1"
   }
 }

@@ -1,0 +1,77 @@
+{{> header_before}}
+<div class="page-header header-filter  short-header subscribe-line" data-parallax="true" style="background-image: url(&quot;../assets/img/img/blog-running.jpg&quot;); transform: translate3d(0px, 1800.33px, 0px);">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 text-center">
+                <div class="col-md-6 col-md-offset-3">
+                    <div class="card">
+                        <div class="card-content pad-right-10   ">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="main main-raised blog-post">
+    <div class="container">
+        <div class="section section-text">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+
+                    <div class="media-area">
+                        <br>
+                        <div class="media">
+                            <a class="pull-left" href="#pablo">
+                                <div class="avatar">
+                                    {{#if data.question.asker.profile_pic}}
+                                    <img class="media-object" alt="Tim Picture" src="{{data.question.asker.profile_pic}}">
+                                    {{else}}
+                                    <img class="media-object" alt="Tim Picture" src="/images/default-user.png">
+                                    {{/if}}
+                                </div>
+                            </a>
+                            <div class="media-body">
+                                <h4 class="media-heading">{{data.question.asker.name}}<small>· {{timeAgo data.question.created_on}}</small>
+                                </h4>
+
+                                <p>{{data.question.question}}</p>
+
+                                <div class="media-footer">
+                                    <a class="btn btn-default btn-simple pull-right">
+                                        {{data.question.ansCount}} answers
+                                    </a>
+                                </div>
+                                {{#each data.answers}}
+                                <div class="media">
+                                    <a class="pull-left">
+                                        <div class="avatar">
+                                            {{#if answerer.profile_pic}}
+                                            <img class="media-object" alt="Tim Picture" src="{{answerer.profile_pic}}">
+                                            {{else}}
+                                            <img class="media-object" alt="Tim Picture" src="/images/default-user.png">
+                                            {{/if}}
+                                        </div>
+                                    </a>
+                                    <div class="media-body">
+                                        <h4 class="media-heading">{{answerer.name}} <small>· {{timeAgo created_on}}</small>
+                                            {{#if answerer.is_trainer}}
+                                            <span class="label label-primary badge-trainer mar-left-15"><i class="fa fa-star"></i> Professional Trainer</span>
+                                            {{/if}}
+                                        </h4>
+
+                                        <p>{{answer}}</p>
+
+                                    </div>
+                                </div>
+                                {{/each}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{> footer}}
