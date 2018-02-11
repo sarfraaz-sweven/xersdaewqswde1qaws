@@ -1,0 +1,325 @@
+.footer{
+    padding:0px !important;
+}
+
+
+.header-filter{
+    background: linear-gradient(60deg, rgba(225, 190, 231, 0.25), rgba(186, 104, 200, 0.85));
+}
+
+.bg-primary{
+    background-color: #9c27b0;
+}
+
+.carousel-indicators{
+    z-index: 0;
+}
+
+.section-down{
+    position: absolute;
+    bottom:0;
+    left:0;
+    width: 100% !important;
+    padding: 20px;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+
+.footer{
+    width:100%;
+}
+
+.container{
+    width:100%;
+}
+
+.stable{
+    z-index: 1010;
+    color: #fff;
+}
+
+.main-raised{
+    margin-bottom: 30px;
+    padding-bottom: 120px;
+}
+
+.copyright.stable{
+    text-align: right;    
+}
+
+@media (max-width:992px)
+{
+    .footer .copyright {
+        display: inline-block;
+        text-align: center;
+        padding: 10px 0;
+        float: none !important;
+        width: 100%;
+    }    
+}
+
+.carousel-inner>.item>a>img, .carousel-inner>.item>img {
+    opacity: 0.5;
+}
+
+.carousel.slide{
+    background-color: rgba(186, 104, 200, 0.5)
+}
+
+
+.carousel-caption{
+    top:30%;
+    text-align: center;
+}
+
+.text-white{
+    color: white;
+}
+
+.center{
+    text-align: center;
+}
+
+.mt30{
+    margin-top: 30px;
+}
+
+.footer-contact{
+    position: absolute;
+    bottom: 0;
+    color:black;
+    background-color: rgba(0, 0, 0, 0.25)
+}
+
+.footer-other>.container>nav>ul>li>a{
+    color: black !important;
+}
+
+.footer-other>.container>div{
+    color: black !important;
+}
+
+.footer-other>.container>div>a{
+    color: black !important;
+}
+
+.header-contact{
+    height: 0 !important;
+    width: 0 !important;
+    display: none;
+}
+
+.contactus-2 .card-contact {
+    margin: 50px 0 0 100px !important;
+}
+
+.card .card-content {
+    /* padding: 0px 30px 15px 30px; */
+}
+
+.map{
+    min-height: 100vh !important;
+}
+
+.professional-trainer{
+    margin-left: 15px;    
+}
+
+.footer .copyright{
+    padding-right: 20px;
+}
+
+.login-page .short-header {
+    min-height: 10px !important;
+    height: auto;
+    padding-bottom: 70px;
+}
+
+.bottom-padding-0{
+    padding-bottom: 0 !important;
+}
+
+.app-store-img{
+    width: auto;
+    height: 50px;
+}
+
+.info-horizontal>.description{
+    padding:10px 20px;
+    max-width:500px;
+}
+
+.app-store-img-holder{
+    text-align: center;
+}
+
+.features-1{
+    padding-top: 0px;
+}
+
+.back-change{
+    background-color: #f3f3f3;
+}
+
+.icon-feature-img{
+    width:50px !important;
+    height: auto !important;
+}
+
+.icon-training>img{
+    width: 50px;
+    margin-top: 40px;
+    height: auto;
+}
+
+.icon-training{
+    width: 130px;
+    height: 130px;
+    margin: auto;
+    border: 1px solid;
+    border-radius: 50%;
+}
+
+.card-pricing .btn-white{
+    background-color: transparent;
+}
+.card-pricing .btn-white:hover{
+    color: black;
+}
+
+.card-image .img-raised{
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-image .colored-shadow{
+    height: 200px;
+}
+
+.forgot{
+    color: #cd3b56;
+}
+
+.padding-forgot-msg{
+    padding-right: 10px;
+    padding-left: 40px;
+}
+
+.margin-top-0{
+    margin-top: 0;
+}
+
+.bottom-vh{
+    padding-bottom: 20vh;
+}
+
+.mar-top-10{
+ margin-top: 10px;
+}
+
+.pad-right-10{
+    padding: 0 10px 0 0 !important;
+}
+
+.mar-left-15{
+    margin-left: 15px;
+}
+
+.badge-trainer{
+    background-color: #cd3b56 !important;    
+}
+
+.phone-container{
+    max-width: 100% !important;
+}
+
+.card-numbers{
+    text-align: center;
+    font-size: 3rem;
+}
+
+.card-numbers-tag{
+    text-align: center;
+}
+
+.main.blog-post{
+    min-height: 400px;
+}
+
+.training-title{
+    text-align: center;
+    font-size: 3rem;
+}
+
+.tab-pane {
+    padding: 25px;
+}
+
+.tab-pane>.card>.date{
+    text-align: center;
+    font-weight: 300;
+    font-size: 3.5rem;
+    line-height: 5.5rem;
+    color: #666;
+}
+
+.session-detail{
+    padding: 20px 10px 0px 10px;
+}
+
+.tab-pane>.card{
+    padding:15px 30px;
+}
+
+.tab-pane>.card>.status{
+    text-align: center;
+}
+
+.matter{
+    text-align: center;
+}
+
+.matter>span{
+    font-weight: 500;
+}
+
+.training-feedback>h4{
+    font-size: 14pt !important;
+}
+.training-feedback>p{
+    font-size: 12pt !important;
+    color: #b1b1b1 !important;
+}
+
+.feedback-form{
+    padding: 20px;
+}
+
+.feedback-textarea{
+    width: 100% !important;
+    -webkit-box-sizing: border-box !important; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box !important;    /* Firefox, other Gecko */
+    box-sizing: border-box !important;         /* Opera/IE 8+ */
+}
+
+.blog-short{
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+}
+
+.blog-short-title{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.padding-sideways-100{
+    padding-right:100px;
+    padding-left:100px;
+}
+
+.margin-left-20{
+    margin-left: 20px;
+}
