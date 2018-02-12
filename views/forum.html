@@ -35,7 +35,13 @@
         <div class="section section-text">
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
-                    <h3 class="title">Popular Questions</h3>
+                    <div>
+                        <h3 class="title">Popular Questions
+                        {{#if login}}
+                        <a class="btn btn-primary btn-round btn-wd pull-right" id="question-button">Ask here</a>
+                        {{/if}}
+                        </h3>
+                    </div>
                     <br>
                     <div class="media-area">
                         {{#each data.questions}}

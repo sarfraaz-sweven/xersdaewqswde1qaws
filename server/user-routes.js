@@ -26,6 +26,9 @@ user_routes.get('/', isLoggedIn,async (req, res) => {
   data.blogs = await Blog.find({featured:true}).limit(3);
   data.reviews = await Review.find({status:true}).limit(3);
 
+  if(req.isLoggedIn)
+    data.me = req.user;
+
   res.render("home.html", {
     'pageTitle': 'Welcome to Fitness Marshal',
     'link': 'home',
@@ -34,21 +37,12 @@ user_routes.get('/', isLoggedIn,async (req, res) => {
   });
 });
 
-
 user_routes.get('/forgot-password', isLoggedIn, (req, res) => {
-  console.log("LOGGED IN ", req.isLoggedIn)
+  console.log("LOGGED IN ", req.isLoggedIn);
+
   res.render("forgot-password.html", {
     'pageTitle': 'Verify your email address',
     'link': 'forgot',
-    'login': req.loggedIn
-  });
-});
-
-user_routes.get('/blog', isLoggedIn, (req, res) => {
-  console.log("LOGGED IN ", req.isLoggedIn)
-  res.render("blog.html", {
-    'pageTitle': 'Welcome to Fitness Marshal',
-    'link': 'blog',
     'login': req.loggedIn
   });
 });
@@ -58,6 +52,9 @@ user_routes.get('/blogs', isLoggedIn, async (req, res) => {
 
   var data = {};
   data.blogs = await Blog.find({},[],{sort:{'created_on':-1}});
+
+  if(req.isLoggedIn)
+    data.me = req.user;
 
   res.render("blogs.html", {
     'pageTitle': 'Welcome to Fitness Marshal',
@@ -76,6 +73,9 @@ user_routes.get('/blogs/:permalink', isLoggedIn, async (req, res) => {
   data.comments = await Comment.find({blog:data.mainBlog._id});
   data.commentsCount = data.comments.length;
   data.tagsArray = data.mainBlog.tags.split('|');
+
+  if(req.isLoggedIn)
+    data.me = req.user;
 
   for(var i = 0; i < data.comments.length ; i++)
   {
@@ -96,6 +96,9 @@ user_routes.get('/trainings', isLoggedIn,async (req, res) => {
   var data = {};
   data.trainings = await Training.find({status:true});
 
+  if(req.isLoggedIn)
+    data.me = req.user;
+
   res.render("trainings.html", {
     'pageTitle': 'Choose your training',
     'link': 'trainings',
@@ -106,6 +109,10 @@ user_routes.get('/trainings', isLoggedIn,async (req, res) => {
 
 user_routes.get('/my-training', isLoggedIn, (req, res) => {
   console.log("LOGGED IN ", req.isLoggedIn)
+
+  if(req.isLoggedIn)
+    data.me = req.user;
+
   res.render("my-training.html", {
     'pageTitle': 'My Training',
     'link': 'my-training',
@@ -115,6 +122,10 @@ user_routes.get('/my-training', isLoggedIn, (req, res) => {
 
 user_routes.get('/my-training/:id', isLoggedIn, (req, res) => {
   console.log("LOGGED IN ", req.isLoggedIn)
+
+  if(req.isLoggedIn)
+    data.me = req.user;
+
   res.render("training-detail.html", {
     'pageTitle': 'Training Progress',
     'link': 'my-training',
@@ -128,6 +139,9 @@ user_routes.get('/forum', isLoggedIn, async (req, res) => {
   var data = {};
   data.questions = await Question.find({'type':'public'},[],{sort:{'created_on':-1}});
 
+  if(req.isLoggedIn)
+    data.me = req.user;
+  
   for(var i=0;i<data.questions.length;i++)
   {
     data.questions[i].ansCount = await Answer.find({'question':data.questions[i].id}).count();
@@ -148,6 +162,9 @@ user_routes.get('/forum/:permalink', isLoggedIn, async (req, res) => {
 
   var data = {};
 
+  if(req.isLoggedIn)
+    data.me = req.user;
+  
   data.question = await Question.findOne({'permalink':req.params.permalink});
   data.question.asker =  await User.findOne({'_id':data.question.author},['name','profile_pic']);
   data.question.ansCount = await Answer.find({'question':data.question.id}).count();
@@ -169,6 +186,10 @@ user_routes.get('/forum/:permalink', isLoggedIn, async (req, res) => {
 
 user_routes.get('/contact', isLoggedIn, (req, res) => {
   console.log("LOGGED IN ", req.isLoggedIn)
+
+  if(req.isLoggedIn)
+    data.me = req.user;
+
   res.render("contact.html", {
     'pageTitle': 'Welcome to Fitness Marshal',
     'link': 'contact',

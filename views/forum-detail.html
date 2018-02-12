@@ -66,6 +66,30 @@
                                     </div>
                                 </div>
                                 {{/each}}
+
+                                {{#if login}}
+                                <h3 class="title text-center">Post your Answer</h3>
+                                <div class="media media-post">
+                                    <a class="pull-left author" href="#pablo">
+                                        <div class="avatar">
+                                            {{#if me.profile_pic}}
+                                            <img class="media-object" alt="64x64" src="{{me.profile_pic}}">
+                                            {{else}}
+                                            <img class="media-object" alt="64x64" src="/images/default-user.png">
+                                            {{/if}}
+                                        </div>
+                                    </a>
+                                    <div class="media-body">
+                                        <div class="form-group is-empty"><textarea class="form-control" placeholder="Write some nice stuff or nothing..." rows="6" id="comment-box"></textarea><span class="material-input"></span></div>
+                                        <div class="media-footer">
+                                            <a class="btn btn-primary btn-round btn-wd pull-right" id="answer-button">Post Your Answer</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                {{else}}
+                                <h4 class="title text-center"><a class="link" href="/signin">Login</a> to post your answer</h4>
+                                {{/if}}
+        
                             </div>
                         </div>
                     </div>

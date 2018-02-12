@@ -15,14 +15,15 @@ const { Answer } = require('./../models/answer');
 const { Comment } = require('./../models/comment');
 const { TermComments } = require('./../models/comment');
 const { Package } = require('./../models/package');
+const { Session } = require('./../models/sessions');
 const { Blog } = require('./../models/blog');
 
-// var term = new Answer({
-//   created_on:parseInt(new Date().getTime() / 1000),
-//   author:"5a7f1aee10855a22f02cce4d",
-//   question:"5a7f2b5225a1a80f98062c4e",
-//   answer:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eleifend vel urna eget lacinia. Vivamus ut tempus erat. Morbi a luctus metus, sed tincidunt eros."
+// var term = new Session({
+//   package:"5a80737589f881232c830884",
+//   set_on:"1520238600",
+//   status:false
 // });
+
 // term.save().then((doc)=>{
 //   console.log(doc);
 // })
@@ -79,6 +80,7 @@ app.use(express.static(__dirname + './../public'));
 
 app.use(require('./user-routes'));
 app.use(require('./admin-routes'));
+app.use(require('./api-routes'));
 
 
 app.listen(port,(err)=>{

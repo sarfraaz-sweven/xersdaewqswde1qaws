@@ -11,20 +11,17 @@ var packageSchema = new mongoose.Schema({
     required:true
   },
   trainer:{
-    type:String,
-    required:true
+    type:String
   },
   purchased:{
     type:String,
     required:true
   },
   started:{
-    type:String,
-    required:true
+    type:String
   },
   completed:{
-    type:String,
-    required:true
+    type:String
   },
   address1:{
     type:String,
@@ -37,8 +34,12 @@ var packageSchema = new mongoose.Schema({
     type: String,
     required:true
   },
+  zip:{
+    type: String,
+    required:true
+  },
   state:{
-    type: Number,
+    type: String,
     required:true
   },
   country:{
@@ -49,40 +50,12 @@ var packageSchema = new mongoose.Schema({
     type: Boolean,
     required: true
   },
-  sessions:[
-      {
-        set_on:{
-            type: String,
-            required: true
-        },
-        status:{
-            type: Boolean,
-            required: true
-        },
-        start:{
-            type: String
-        },
-        end:{
-            type: String
-        },
-        training_points:{
-            type: String
-        },
-        remarks:{
-            type: String
-        },
-        feedback:{
-            type: String
-        },
-        loc_start:{
-            type: String
-        },
-        loc_end:{
-            type: String
-        }
-      }
-  ]
-
+  amount:{
+    type: Number
+  },
+  payment:{
+    type: String
+  }
 });
 
 
